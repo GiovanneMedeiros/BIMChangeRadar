@@ -65,4 +65,5 @@
 
   <Style Selector="DataGrid"><Setter Property="Background" Value="White" /><Setter Property="GridLinesVisibility" Value="Horizontal" /><Setter Property="HorizontalGridLinesBrush" Value="#EDF0F6" /></Style>
   <Style Selector="DataGridColumnHeader"><Setter Property="Background" Value="#EEF2FA" /><Setter Property="Foreground" Value="#41507A" /><Setter Property="FontSize" Value="11" /><Setter Property="FontWeight" Value="Bold" /></Style>
+  <Style Selector="DataGridCell TextBlock"><Setter Property="TextTrimming" Value="CharacterEllipsis" /></Style>
 </Styles>

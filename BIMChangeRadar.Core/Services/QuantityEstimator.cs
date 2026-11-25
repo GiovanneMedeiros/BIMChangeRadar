@@ -47,7 +47,7 @@ public static class QuantityEstimator
         }
         if (parts.Count == 0) return null;
 
-        parts.Add("Valores são estimativas calculadas a partir das dimensões do snapshot.");
+        parts.Add("Estimativa baseada nos dados do snapshot; não são quantitativos oficiais extraídos do Revit.");
         return new QuantityEstimate(aBefore, aAfter, vBefore, vAfter, string.Join(" ", parts));
     }
 }

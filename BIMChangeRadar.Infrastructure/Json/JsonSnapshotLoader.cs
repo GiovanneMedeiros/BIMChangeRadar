@@ -31,21 +31,45 @@ public class JsonSnapshotLoader : ISnapshotLoader
         }
         catch (JsonException ex)
         {
-            throw new InvalidDataException($"JSON inválido em '{sourceName}': {ex.Message}", ex);
+            throw new InvalidDataException(Describe(ex, sourceName), ex);
         }
-        if (snapshot is null) throw new InvalidDataException($"'{sourceName}' está vazio.");
+        if (snapshot is null) throw new InvalidDataException($"'{sourceName}' está vazio ou não contém um snapshot.");
         Validate(snapshot, sourceName);
         return snapshot;
     }
 
+    /// <summary>Mensagem amigável em português (sem expor texto técnico do serializador).</summary>
+    private static string Describe(JsonException ex, string source)
+    {
+        var where = ex.Path is { Length: > 0 } && ex.Path != "$" ? $" no campo '{ex.Path}'" : "";
+        var line = ex.LineNumber is long l ? $" (linha {l + 1})" : "";
+        return ex.Message.Contains("does not contain any JSON tokens", StringComparison.OrdinalIgnoreCase)
+            ? $"'{source}' está vazio."
+            : $"'{source}' não é um snapshot válido: JSON malformado ou com tipo de dado incompatível{where}{line}.";
+    }
+
     private static void Validate(ModelSnapshot s, string source)
     {
-        if (string.IsNullOrWhiteSpace(s.ProjectName))
-            throw new InvalidDataException($"'{source}': campo 'projectName' é obrigatório.");
+        s.ProjectName = s.ProjectName?.Trim() ?? "";
+        s.Version ??= "";
+        if (s.ProjectName.Length == 0)
+            throw new InvalidDataException($"'{source}': o campo 'projectName' é obrigatório.");
+        s.Elements ??= new();
         if (s.Elements.Count == 0)
             throw new InvalidDataException($"'{source}': nenhum elemento encontrado em 'elements'.");
-        var bad = s.Elements.FirstOrDefault(e => string.IsNullOrWhiteSpace(e.Key));
-        if (bad is not null)
-            throw new InvalidDataException($"'{source}': elemento '{bad.Name}' sem 'id'/'uniqueId'.");
+        if (s.Elements.Any(e => e is null))
+            throw new InvalidDataException($"'{source}': a lista 'elements' contém um item nulo.");
+
+        var seen = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var e in s.Elements)
+        {
+            // Campos de texto explicitamente null viram vazio (evita NullReference em regras e exportação).
+            e.Id ??= ""; e.UniqueId ??= ""; e.Name ??= ""; e.Category ??= "";
+            e.Parameters ??= new();
+            if (string.IsNullOrWhiteSpace(e.Key))
+                throw new InvalidDataException($"'{source}': o elemento '{e.Name}' não possui 'id' nem 'uniqueId'.");
+            if (!seen.Add(e.Key))
+                throw new InvalidDataException($"'{source}': identificador duplicado '{e.Key}'. Cada elemento precisa de um id único.");
+        }
     }
 }

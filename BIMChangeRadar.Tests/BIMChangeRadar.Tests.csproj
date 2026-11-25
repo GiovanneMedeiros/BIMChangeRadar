@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BIMChangeRadar.Core\BIMChangeRadar.Core.csproj" />
     <ProjectReference Include="..\BIMChangeRadar.Infrastructure\BIMChangeRadar.Infrastructure.csproj" />
+    <ProjectReference Include="..\BIMChangeRadar.App\BIMChangeRadar.App.csproj" />
   </ItemGroup>
 
   <ItemGroup>

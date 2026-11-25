@@ -26,11 +26,16 @@ public partial class MainViewModel : ObservableObject
     private readonly IReportExporter _html = new HtmlReportExporter();
     private IDialogService _dialogs = null!;
 
-    public MainViewModel() : this(new JsonSnapshotLoader(), new SnapshotComparer()) { }
-    public MainViewModel(ISnapshotLoader loader, ISnapshotComparer comparer)
+    private readonly HistoryStore _historyStore;
+    private string? _previousFile, _currentFile;
+
+    public MainViewModel() : this(new JsonSnapshotLoader(), new SnapshotComparer(), new HistoryStore()) { }
+    public MainViewModel(ISnapshotLoader loader, ISnapshotComparer comparer, HistoryStore historyStore)
     {
         _loader = loader;
         _comparer = comparer;
+        _historyStore = historyStore;
+        foreach (var r in _historyStore.Load()) History.Add(new HistoryEntry { Record = r });
     }
 
     public void AttachDialogs(IDialogService dialogs) => _dialogs = dialogs;
@@ -105,10 +110,37 @@ public partial class MainViewModel : ObservableObject
             OnPropertyChanged(n);
     }
 
-    partial void OnShowOverviewChanged(bool value) { }
     partial void OnSelectedHistoryChanged(HistoryEntry? value)
     {
-        if (value is not null && !ReferenceEquals(value.Result, Result)) { Result = value.Result; PreviousSnapshot = value.Result.Previous; CurrentSnapshot = value.Result.Current; Refresh(); }
+        if (value is not null) _ = OpenHistoryEntryAsync(value);
+    }
+
+    /// <summary>Abre uma análise do histórico; se veio do disco, recarrega os arquivos e refaz a comparação.</summary>
+    public async Task OpenHistoryEntryAsync(HistoryEntry entry)
+    {
+        try
+        {
+            ErrorMessage = null;
+            if (entry.Result is null)
+            {
+                IsBusy = true;
+                var a = await _loader.LoadAsync(entry.Record.PreviousPath);
+                var b = await _loader.LoadAsync(entry.Record.CurrentPath);
+                entry.Result = _comparer.Compare(a, b, entry.Record.AnalyzedAt);
+            }
+            if (ReferenceEquals(entry.Result, Result)) return;
+            Result = entry.Result;
+            PreviousSnapshot = entry.Result.Previous; CurrentSnapshot = entry.Result.Current;
+            PreviousPath = $"{Path.GetFileName(entry.Record.PreviousPath)} · {entry.Result.Previous.Label}";
+            CurrentPath = $"{Path.GetFileName(entry.Record.CurrentPath)} · {entry.Result.Current.Label}";
+            Refresh();
+            StatusMessage = $"Análise de {entry.When} aberta a partir do histórico.";
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"Não foi possível reabrir esta análise: {ex.Message}";
+        }
+        finally { IsBusy = false; }
     }
 
     // ----- comandos -----
@@ -147,8 +179,8 @@ public partial class MainViewModel : ObservableObject
         try
         {
             var snap = await _loader.LoadAsync(path);
-            if (isPrevious) { PreviousSnapshot = snap; PreviousPath = $"{Path.GetFileName(path)} · {snap.Label} · {snap.Elements.Count} elementos"; }
-            else { CurrentSnapshot = snap; CurrentPath = $"{Path.GetFileName(path)} · {snap.Label} · {snap.Elements.Count} elementos"; }
+            if (isPrevious) { _previousFile = path; PreviousSnapshot = snap; PreviousPath = $"{Path.GetFileName(path)} · {snap.Label} · {snap.Elements.Count} elementos"; }
+            else { _currentFile = path; CurrentSnapshot = snap; CurrentPath = $"{Path.GetFileName(path)} · {snap.Label} · {snap.Elements.Count} elementos"; }
             StatusMessage = $"Snapshot carregado: {snap.Label} ({snap.Elements.Count} elementos).";
         }
         catch (Exception ex) { ErrorMessage = ex.Message; StatusMessage = "Falha ao carregar o arquivo."; }
@@ -162,16 +194,26 @@ public partial class MainViewModel : ObservableObject
         ErrorMessage = null;
         try
         {
-            if (!string.Equals(PreviousSnapshot.ProjectName, CurrentSnapshot.ProjectName, StringComparison.OrdinalIgnoreCase))
-                StatusMessage = "Atenção: os snapshots pertencem a projetos com nomes diferentes.";
+            var sameProject = string.Equals(PreviousSnapshot.ProjectName, CurrentSnapshot.ProjectName, StringComparison.OrdinalIgnoreCase);
             var result = _comparer.Compare(PreviousSnapshot, CurrentSnapshot);
             Result = result;
-            History.Insert(0, new HistoryEntry { Result = result });
+            RecordHistory(result);
             Refresh();
-            StatusMessage = $"Comparação concluída: {result.TotalChanges} alterações em {result.TotalElements} elementos.";
+            StatusMessage = $"Comparação concluída: {result.TotalChanges} alterações em {result.TotalElements} elementos."
+                + (sameProject ? "" : " Atenção: os snapshots pertencem a projetos com nomes diferentes.");
             ShowOverview = true;
         }
         catch (Exception ex) { ErrorMessage = ex.Message; StatusMessage = "Falha na comparação."; }
+    }
+
+    private void RecordHistory(ComparisonResult r)
+    {
+        var rec = new HistoryRecord(r.Current.ProjectName, r.Previous.Version, r.Current.Version,
+            _previousFile ?? "", _currentFile ?? "", r.AnalyzedAt,
+            r.TotalElements, r.Added, r.Removed, r.Modified, r.Unchanged, r.HighImpact);
+        History.Insert(0, new HistoryEntry { Record = rec, Result = r });
+        while (History.Count > HistoryStore.MaxEntries) History.RemoveAt(History.Count - 1);
+        _historyStore.Save(History.Select(h => h.Record));
     }
 
     private bool CanExport() => Result is not null;
@@ -202,12 +244,12 @@ public partial class MainViewModel : ObservableObject
         Cards = new()
         {
             new("Total de elementos", r.TotalElements, Palette.Brush("#2563EB"), "analisados"),
-            new("Adicionados", r.Added, Palette.Added, "novos na versão atual"),
-            new("Removidos", r.Removed, Palette.Removed, "ausentes na versão atual"),
-            new("Modificados", r.Modified, Palette.Brush("#E08A00"), "propriedades alteradas"),
+            new("Adicionados", r.Added, Palette.Added, "novos"),
+            new("Removidos", r.Removed, Palette.Removed, "ausentes"),
+            new("Modificados", r.Modified, Palette.Brush("#E08A00"), "alterados"),
             new("Inalterados", r.Unchanged, Palette.Brush("#7A8AAE"), "sem diferenças"),
-            new("Total de alterações", r.TotalChanges, Palette.Brush("#0F1F3D"), "add + rem + mod"),
-            new("Alto impacto", r.HighImpact, Palette.Brush("#C62828"), "HIGH ou CRITICAL"),
+            new("Total de alterações", r.TotalChanges, Palette.Brush("#0F1F3D"), "adic. + rem. + modif."),
+            new("Alto impacto", r.HighImpact, Palette.Brush("#C62828"), "alto ou crítico"),
         };
         var max = Math.Max(1, new[] { ImpactLevel.Critical, ImpactLevel.High, ImpactLevel.Medium, ImpactLevel.Low }.Max(l => r.CountByImpact(l)));
         ImpactBars = new(new[] { ImpactLevel.Critical, ImpactLevel.High, ImpactLevel.Medium, ImpactLevel.Low }
@@ -226,12 +268,16 @@ public partial class MainViewModel : ObservableObject
     {
         if (Result is null) { Rows = new(); RowCountText = ""; return; }
         IEnumerable<ElementChange> q = Result.Changes;
+        // ComboBox pode zerar a seleção ao trocar a lista de opções; null equivale a "Todos".
+        var typeFilter = string.IsNullOrEmpty(SelectedChangeType) ? "Todos" : SelectedChangeType;
+        var impactFilter = string.IsNullOrEmpty(SelectedImpact) ? "Todos" : SelectedImpact;
+        var categoryFilter = string.IsNullOrEmpty(SelectedCategory) ? "Todos" : SelectedCategory;
 
         // "All" mostra apenas alterações reais; Unchanged precisa ser pedido explicitamente.
-        q = SelectedChangeType == "Todos" ? q.Where(c => c.ChangeType != ChangeType.Unchanged)
-                                        : q.Where(c => Pt.ChangeType(c.ChangeType).Equals(SelectedChangeType, StringComparison.OrdinalIgnoreCase));
-        if (SelectedImpact != "Todos") q = q.Where(c => Pt.Impact(c.Impact).Equals(SelectedImpact, StringComparison.OrdinalIgnoreCase));
-        if (SelectedCategory != "Todos") q = q.Where(c => Pt.Category(c.Category) == SelectedCategory);
+        q = typeFilter == "Todos" ? q.Where(c => c.ChangeType != ChangeType.Unchanged)
+                                        : q.Where(c => Pt.ChangeType(c.ChangeType).Equals(typeFilter, StringComparison.OrdinalIgnoreCase));
+        if (impactFilter != "Todos") q = q.Where(c => Pt.Impact(c.Impact).Equals(impactFilter, StringComparison.OrdinalIgnoreCase));
+        if (categoryFilter != "Todos") q = q.Where(c => Pt.Category(c.Category) == categoryFilter);
         if (!string.IsNullOrWhiteSpace(SearchText))
         {
             var s = SearchText.Trim();

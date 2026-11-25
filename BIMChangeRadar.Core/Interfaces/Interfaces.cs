@@ -10,7 +10,7 @@ public interface ISnapshotLoader
 
 public interface ISnapshotComparer
 {
-    ComparisonResult Compare(ModelSnapshot previous, ModelSnapshot current);
+    ComparisonResult Compare(ModelSnapshot previous, ModelSnapshot current, DateTime? analyzedAt = null);
 }
 
 public interface IImpactAnalyzer

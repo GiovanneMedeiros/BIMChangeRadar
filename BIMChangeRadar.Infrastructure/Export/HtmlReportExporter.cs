@@ -1,4 +1,5 @@
-using System.Net;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using System.Text;
 using BIMChangeRadar.Core.Interfaces;
 using BIMChangeRadar.Core.Models;
@@ -15,7 +16,9 @@ public class HtmlReportExporter : IReportExporter
     public async Task ExportAsync(ComparisonResult result, string path, CancellationToken ct = default)
         => await File.WriteAllTextAsync(path, Build(result), new UTF8Encoding(false), ct);
 
-    private static string E(string? s) => WebUtility.HtmlEncode(s ?? "");
+    // Escapa apenas caracteres perigosos (<, >, &, aspas); acentos permanecem legíveis no HTML (arquivo é UTF-8).
+    private static readonly HtmlEncoder Encoder = HtmlEncoder.Create(UnicodeRanges.All);
+    private static string E(string? s) => Encoder.Encode(s ?? "");
 
     public static string Build(ComparisonResult r)
     {

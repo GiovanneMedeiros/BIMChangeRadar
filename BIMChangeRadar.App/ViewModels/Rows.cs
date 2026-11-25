@@ -22,20 +22,23 @@ public static class Palette
         _ => (Neutral, NeutralBg)
     };
 
-    public static (IBrush Fg, IBrush Bg) For(ImpactLevel l) => l switch
+    // Pincéis compartilhados: evita alocar 2 SolidColorBrush por linha em tabelas grandes.
+    private static readonly Dictionary<ImpactLevel, (IBrush Fg, IBrush Bg)> ImpactBadge = new()
     {
-        ImpactLevel.Low => (Brush("#2C5AA8"), Brush("#E3ECFB")),
-        ImpactLevel.Medium => (Brush("#8A5A00"), Brush("#FFF0D2")),
-        ImpactLevel.High => (Brush("#B24700"), Brush("#FFE0CC")),
-        ImpactLevel.Critical => (Brush("#FFFFFF"), Brush("#C62828")),
-        _ => (Neutral, NeutralBg)
+        [ImpactLevel.Low] = (Brush("#2C5AA8"), Brush("#E3ECFB")),
+        [ImpactLevel.Medium] = (Brush("#8A5A00"), Brush("#FFF0D2")),
+        [ImpactLevel.High] = (Brush("#B24700"), Brush("#FFE0CC")),
+        [ImpactLevel.Critical] = (Brush("#FFFFFF"), Brush("#C62828")),
+        [ImpactLevel.None] = (Neutral, NeutralBg),
+    };
+    private static readonly Dictionary<ImpactLevel, IBrush> ImpactSolid = new()
+    {
+        [ImpactLevel.Low] = Brush("#5B8DEF"), [ImpactLevel.Medium] = Brush("#F2A81D"),
+        [ImpactLevel.High] = Brush("#F26B1D"), [ImpactLevel.Critical] = Brush("#C62828"), [ImpactLevel.None] = Brush("#9AA7C2"),
     };
 
-    public static IBrush Solid(ImpactLevel l) => l switch
-    {
-        ImpactLevel.Low => Brush("#5B8DEF"), ImpactLevel.Medium => Brush("#F2A81D"),
-        ImpactLevel.High => Brush("#F26B1D"), ImpactLevel.Critical => Brush("#C62828"), _ => Brush("#9AA7C2")
-    };
+    public static (IBrush Fg, IBrush Bg) For(ImpactLevel l) => ImpactBadge[l];
+    public static IBrush Solid(ImpactLevel l) => ImpactSolid[l];
 }
 
 /// <summary>Linha da tabela: adapta ElementChange para exibição (cores, textos, ordenação).</summary>
@@ -83,10 +86,12 @@ public class PropertyRow
 public record StatCard(string Label, int Value, IBrush Accent, string Hint);
 public record BarItem(string Label, int Value, double Fraction, IBrush Color);
 
-public partial class HistoryEntry : ObservableObject
+public class HistoryEntry
 {
-    public required Core.Models.ComparisonResult Result { get; init; }
-    public string Title => $"{Result.Current.ProjectName}: v{Result.Previous.Version} → v{Result.Current.Version}";
-    public string When => Result.AnalyzedAt.ToString("dd/MM/yyyy HH:mm:ss");
-    public string Counts => $"{Result.Added} adicionados · {Result.Removed} removidos · {Result.Modified} modificados · {Result.HighImpact} de alto impacto";
+    public required BIMChangeRadar.Infrastructure.FileSystem.HistoryRecord Record { get; init; }
+    /// <summary>Resultado em memória (null para entradas restauradas do disco; é recalculado ao abrir).</summary>
+    public Core.Models.ComparisonResult? Result { get; set; }
+    public string Title => $"{Record.Project}: v{Record.PreviousVersion} → v{Record.CurrentVersion}";
+    public string When => Record.AnalyzedAt.ToString("dd/MM/yyyy HH:mm:ss");
+    public string Counts => $"{Record.Added} adicionados · {Record.Removed} removidos · {Record.Modified} modificados · {Record.HighImpact} de alto impacto";
 }

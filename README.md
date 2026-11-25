@@ -19,7 +19,7 @@ Reduzir a comparação manual e priorizar a revisão: responder rapidamente *O q
 - **Estimativa quantitativa** de área/volume (ex.: parede 8,96 m² → 13,44 m², +4,48 m²) — só quando há dados; sempre rotulada como *estimativa*.
 - **Tabela** ordenável, com busca por nome/ID, filtros por tipo de alteração, impacto e categoria; painel de detalhes (valor anterior × atual, tipo, motivo).
 - **Exportação CSV** (Excel pt-BR) e **relatório HTML** autocontido.
-- **Histórico** das análises da sessão e botão **Carregar projeto demo**.
+- **Histórico** de análises **persistido em disco** (`history.json` na pasta de dados do usuário; ao reabrir, o app recompara os arquivos originais) e botão **Carregar projeto demo**.
 
 ## Regras de impacto
 | Alteração | Impacto | Motivo |
@@ -53,7 +53,7 @@ BIMChangeRadar.sln
 │   └── Services/                  # QuantityEstimator
 ├── BIMChangeRadar.Infrastructure  # JSON, FileSystem, Export (CSV/HTML)
 ├── BIMChangeRadar.App             # Avalonia: Views, ViewModels (MVVM), Resources
-├── BIMChangeRadar.Tests           # xUnit (25 testes)
+├── BIMChangeRadar.Tests           # xUnit (149 testes)
 ├── Samples/                       # project-v1.json, project-v2.json (+ gerador)
 ├── tools/Screenshots              # renderiza a UI em headless para gerar as imagens do README
 └── docs/                          # INTERVIEW_GUIDE.md e screenshots
@@ -92,15 +92,15 @@ Elemento **W-104**: `Length 3.2 → 4.8`, `Material Concrete → Drywall`, `Leve
 ![Detalhes](docs/screenshots/04-detail.png)
 
 ## Testes
-25 testes xUnit cobrindo: adicionados, removidos, modificados, inalterados, parâmetros, diferença de área, classificação de impacto (incl. estrutural), carregamento/validação de JSON, exportação CSV (inclui proteção contra CSV injection) e HTML (escape).
+**149 testes xUnit**, todos aprovados: cenários de comparação, contadores do dashboard (recontados de forma independente), cada regra de impacto, estimativas de área/volume (incluindo casos sem dados), importação de JSON inválido/vazio/duplicado/grande, CSV (BOM, acentos, injection) e HTML, histórico persistente, filtros/busca/detalhes via ViewModel e desempenho com até 50.000 elementos. Além disso, `dotnet run --project tools/Screenshots` executa a janela real em modo headless, clica nas abas e botões, mede tempos com 10.000 elementos e gera as imagens. Detalhes em [docs/TEST_REPORT.md](docs/TEST_REPORT.md).
 
 ## Limitações atuais
 - **Sem integração com Autodesk Revit** — usa snapshots JSON. A arquitetura está preparada, mas a integração **não está implementada**.
 - Casamento só por `UniqueId`/`Id`; não detecta elemento "recriado" com novo ID.
 - Geometria real não é analisada; quantitativos são estimativas baseadas em dimensões do JSON.
 - Regras de impacto são heurísticas fixas (não configuráveis pela UI).
-- Unidades assumidas em metros; histórico apenas em memória.
-- Interface validada em renderização headless e execução no macOS; não testada em Windows/Linux.
+- Unidades assumidas em metros; o histórico guarda os caminhos dos arquivos (se forem movidos, a análise antiga não reabre); a exportação sempre inclui a análise completa (ignora os filtros da tabela).
+- Interface validada em renderização headless (com cliques simulados) e execução no macOS; não testada em Windows/Linux nem com os diálogos nativos de arquivo. Janelas muito pequenas (1100×680) ficam compactas.
 
 ## Roadmap (Future Development)
 Revit API integration · IFC support · Visual model comparison · AI-powered change explanations · Dependency analysis · BIM workflow automation · Advanced reporting (PDF) · regras configuráveis.

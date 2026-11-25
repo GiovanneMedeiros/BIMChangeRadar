@@ -25,7 +25,7 @@
 - **JSON:** `System.Text.Json` com opções case-insensitive e um `JsonConverter` customizado para `parameters` aceitar string/número/booleano. Validação com mensagens de erro claras.
 - **Motor de comparação:** dois dicionários por `UniqueId` (O(n+m)). Está só na atual → Added; só na anterior → Removed; nas duas → `PropertyDiffer` compara cada propriedade; sem diferenças → Unchanged. Números comparados com tolerância (1e-6), texto com `Trim`, `null` e vazio equivalentes — isso evita falsos positivos.
 - **Regras de impacto:** padrão estratégia — `IPropertyImpactRule` e `IElementImpactRule`, uma classe por regra, cada uma devolve nível + motivo. O elemento fica com o maior nível (abordagem conservadora).
-- **Testes:** 25 testes xUnit: adicionados/removidos/modificados/inalterados, parâmetros, falsos positivos, área, impacto, JSON (inclusive inválido), CSV (inclusive injection) e HTML (escape).
+- **Testes:** 149 testes xUnit: cenários de comparação, contadores do dashboard, cada regra de impacto, estimativas de área, importação de JSON inválido, CSV, HTML, histórico, filtros e desempenho. Os testes foram escritos para ter resultado esperado calculado à mão.
 - **Separação de responsabilidades:** comparar ≠ classificar impacto ≠ estimar quantidade ≠ exportar ≠ exibir. Cada um é uma classe/camada.
 
 ## 3. Perguntas e respostas

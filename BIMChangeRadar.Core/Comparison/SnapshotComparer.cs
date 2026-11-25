@@ -15,7 +15,7 @@ public class SnapshotComparer : ISnapshotComparer
     public SnapshotComparer() : this(new ImpactAnalyzer()) { }
     public SnapshotComparer(IImpactAnalyzer analyzer) => _analyzer = analyzer;
 
-    public ComparisonResult Compare(ModelSnapshot previous, ModelSnapshot current)
+    public ComparisonResult Compare(ModelSnapshot previous, ModelSnapshot current, DateTime? analyzedAt = null)
     {
         ArgumentNullException.ThrowIfNull(previous);
         ArgumentNullException.ThrowIfNull(current);
@@ -49,6 +49,7 @@ public class SnapshotComparer : ISnapshotComparer
         {
             Previous = previous,
             Current = current,
+            AnalyzedAt = analyzedAt ?? DateTime.Now,
             Changes = changes
                 .OrderBy(c => c.ChangeType == ChangeType.Unchanged)
                 .ThenByDescending(c => c.Impact)
