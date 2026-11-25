@@ -2,6 +2,7 @@ using System.Net;
 using System.Text;
 using BIMChangeRadar.Core.Interfaces;
 using BIMChangeRadar.Core.Models;
+using BIMChangeRadar.Core.Services;
 
 namespace BIMChangeRadar.Infrastructure.Export;
 
@@ -43,11 +44,11 @@ td{padding:10px 12px;border-top:1px solid #edf0f6;vertical-align:top}
 
         foreach (var c in r.ActualChanges)
         {
-            sb.Append($"<tr><td>{E(c.ElementId)}</td><td>{E(c.Name)}</td><td>{E(c.Category)}</td>");
-            sb.Append($"<td><span class=\"b {c.ChangeType.ToString().ToUpperInvariant()}\">{c.ChangeType.ToString().ToUpperInvariant()}</span></td>");
-            sb.Append($"<td><span class=\"b {c.Impact.ToString().ToUpperInvariant()}\">{c.Impact.ToString().ToUpperInvariant()}</span></td><td>");
+            sb.Append($"<tr><td>{E(c.ElementId)}</td><td>{E(c.Name)}</td><td>{E(Pt.Category(c.Category))}</td>");
+            sb.Append($"<td><span class=\"b {c.ChangeType.ToString().ToUpperInvariant()}\">{Pt.ChangeType(c.ChangeType)}</span></td>");
+            sb.Append($"<td><span class=\"b {c.Impact.ToString().ToUpperInvariant()}\">{Pt.Impact(c.Impact)}</span></td><td>");
             foreach (var p in c.PropertyChanges)
-                sb.Append($"<div><b>{E(p.PropertyName)}</b>: <span class=\"old\">{E(p.OldValue ?? "—")}</span> → <span class=\"new\">{E(p.NewValue ?? "—")}</span></div>");
+                sb.Append($"<div><b>{E(Pt.Property(p.PropertyName))}</b>: <span class=\"old\">{E(p.OldValue ?? "—")}</span> → <span class=\"new\">{E(p.NewValue ?? "—")}</span></div>");
             foreach (var reason in c.ImpactReasons) sb.Append($"<div style=\"color:#5b6b8c;margin-top:4px\">{E(reason)}</div>");
             if (c.Quantity is not null) sb.Append($"<div style=\"margin-top:4px\"><i>{E(c.Quantity.Message)}</i></div>");
             sb.Append("</td></tr>");

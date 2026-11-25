@@ -67,9 +67,9 @@ public class InfrastructureTests
             var lines = (await File.ReadAllTextAsync(path)).Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             Assert.Equal(string.Join(';', CsvReportExporter.Header), lines[0]);
             Assert.Equal(2, lines.Length);
-            Assert.Contains("MODIFIED", lines[1]);
-            Assert.Contains("HIGH", lines[1]);
-            Assert.Contains("Name | Length", lines[1]);
+            Assert.Contains("MODIFICADO", lines[1]);
+            Assert.Contains("ALTO", lines[1]);
+            Assert.Contains("Nome | Comprimento", lines[1]);
             Assert.Contains("\"'=HYPERLINK", lines[1]); // protegido contra CSV injection
         }
         finally { File.Delete(path); }

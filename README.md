@@ -19,7 +19,7 @@ Reduzir a comparação manual e priorizar a revisão: responder rapidamente *O q
 - **Estimativa quantitativa** de área/volume (ex.: parede 8,96 m² → 13,44 m², +4,48 m²) — só quando há dados; sempre rotulada como *estimativa*.
 - **Tabela** ordenável, com busca por nome/ID, filtros por tipo de alteração, impacto e categoria; painel de detalhes (valor anterior × atual, tipo, motivo).
 - **Exportação CSV** (Excel pt-BR) e **relatório HTML** autocontido.
-- **Histórico** das análises da sessão e botão **Load Demo Project**.
+- **Histórico** das análises da sessão e botão **Carregar projeto demo**.
 
 ## Regras de impacto
 | Alteração | Impacto | Motivo |
@@ -69,7 +69,7 @@ dotnet run --project tools/Screenshots        # (opcional) regenerar screenshots
 ```
 
 ## Como usar
-1. Clique em **Load Demo Project** (carrega `Samples/project-v1.json` e `project-v2.json` e compara), **ou** use **Selecionar** para escolher suas duas versões e **Comparar versões**.
+1. Clique em **Carregar projeto demo** (carrega `Samples/project-v1.json` e `project-v2.json` e compara), **ou** use **Selecionar** para escolher suas duas versões e **Comparar versões**.
 2. No **Dashboard**, veja os indicadores e a distribuição de impacto.
 3. Em **Alterações**, pesquise/filtre/ordene e clique numa linha para ver os detalhes.
 4. Exporte com **CSV** ou **HTML**.

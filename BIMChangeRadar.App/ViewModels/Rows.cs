@@ -1,5 +1,6 @@
 using Avalonia.Media;
 using BIMChangeRadar.Core.Models;
+using BIMChangeRadar.Core.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace BIMChangeRadar.App.ViewModels;
@@ -50,11 +51,11 @@ public class ChangeRow
     public ElementChange Change { get; }
     public string ElementId => Change.ElementId;
     public string Name => Change.Name;
-    public string Category => Change.Category;
-    public string ChangeTypeText => Change.ChangeType.ToString().ToUpperInvariant();
-    public string ImpactText => Change.Impact == ImpactLevel.None ? "—" : Change.Impact.ToString().ToUpperInvariant();
+    public string Category => Pt.Category(Change.Category);
+    public string ChangeTypeText => Pt.ChangeType(Change.ChangeType);
+    public string ImpactText => Pt.Impact(Change.Impact);
     public int ImpactOrder => (int)Change.Impact;
-    public string ChangedProperties => Change.PropertyChanges.Count == 0 ? "—" : string.Join(", ", Change.PropertyChanges.Select(p => p.PropertyName.Replace("Parameters.", "")));
+    public string ChangedProperties => Change.PropertyChanges.Count == 0 ? "—" : string.Join(", ", Change.PropertyChanges.Select(p => Pt.Property(p.PropertyName)));
     public string Summary => Change.Summary;
     public IBrush ChangeFg { get; }
     public IBrush ChangeBg { get; }
@@ -70,11 +71,11 @@ public class PropertyRow
         (Fg, Bg) = Palette.For(p.Impact);
     }
     public PropertyChange Change { get; }
-    public string Name => Change.PropertyName;
+    public string Name => Pt.Property(Change.PropertyName);
     public string Old => Change.OldValue ?? "—";
     public string New => Change.NewValue ?? "—";
-    public string Kind => Change.Kind.ToString();
-    public string ImpactText => Change.Impact.ToString().ToUpperInvariant();
+    public string Kind => Pt.Kind(Change.Kind);
+    public string ImpactText => Pt.Impact(Change.Impact);
     public IBrush Fg { get; }
     public IBrush Bg { get; }
 }
@@ -87,5 +88,5 @@ public partial class HistoryEntry : ObservableObject
     public required Core.Models.ComparisonResult Result { get; init; }
     public string Title => $"{Result.Current.ProjectName}: v{Result.Previous.Version} → v{Result.Current.Version}";
     public string When => Result.AnalyzedAt.ToString("dd/MM/yyyy HH:mm:ss");
-    public string Counts => $"{Result.Added} adicionados · {Result.Removed} removidos · {Result.Modified} modificados · {Result.HighImpact} alto impacto";
+    public string Counts => $"{Result.Added} adicionados · {Result.Removed} removidos · {Result.Modified} modificados · {Result.HighImpact} de alto impacto";
 }

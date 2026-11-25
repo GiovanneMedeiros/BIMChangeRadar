@@ -46,8 +46,8 @@ public class ImpactAnalyzer : IImpactAnalyzer
                 var assessments = _elementRules.Select(r => r.Evaluate(change)).OfType<ImpactAssessment>().ToList();
                 Apply(change, assessments);
                 change.Summary = change.ChangeType == ChangeType.Added
-                    ? $"Elemento adicionado ({change.Category})"
-                    : $"Elemento removido ({change.Category})";
+                    ? $"Elemento adicionado ({Pt.Category(change.Category)})"
+                    : $"Elemento removido ({Pt.Category(change.Category)})";
                 break;
 
             case ChangeType.Modified:
@@ -63,7 +63,7 @@ public class ImpactAnalyzer : IImpactAnalyzer
                 change.PropertyChanges = enriched;
                 change.Quantity = QuantityEstimator.Estimate(change.Before, change.After);
                 Apply(change, all);
-                change.Summary = string.Join("; ", enriched.Take(3).Select(p => $"{p.PropertyName}: {p.OldValue ?? "—"} → {p.NewValue ?? "—"}"))
+                change.Summary = string.Join("; ", enriched.Take(3).Select(p => $"{Pt.Property(p.PropertyName)}: {p.OldValue ?? "—"} → {p.NewValue ?? "—"}"))
                                  + (enriched.Count > 3 ? $" (+{enriched.Count - 3})" : "");
                 break;
         }

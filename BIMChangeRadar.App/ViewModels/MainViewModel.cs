@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using BIMChangeRadar.Core.Comparison;
 using BIMChangeRadar.Core.Interfaces;
 using BIMChangeRadar.Core.Models;
+using BIMChangeRadar.Core.Services;
 using BIMChangeRadar.Infrastructure.Export;
 using BIMChangeRadar.Infrastructure.FileSystem;
 using BIMChangeRadar.Infrastructure.Json;
@@ -50,13 +51,13 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] private bool _showHistory;
 
     // ----- filtros -----
-    public string[] ChangeTypeOptions { get; } = { "All", "Added", "Removed", "Modified", "Unchanged" };
-    public string[] ImpactOptions { get; } = { "All", "Critical", "High", "Medium", "Low" };
+    public string[] ChangeTypeOptions { get; } = { "Todos", "Adicionado", "Removido", "Modificado", "Inalterado" };
+    public string[] ImpactOptions { get; } = { "Todos", "Crítico", "Alto", "Médio", "Baixo" };
     [ObservableProperty] private string _searchText = "";
-    [ObservableProperty] private string _selectedChangeType = "All";
-    [ObservableProperty] private string _selectedImpact = "All";
-    [ObservableProperty] private string _selectedCategory = "All";
-    [ObservableProperty] private ObservableCollection<string> _categoryOptions = new() { "All" };
+    [ObservableProperty] private string _selectedChangeType = "Todos";
+    [ObservableProperty] private string _selectedImpact = "Todos";
+    [ObservableProperty] private string _selectedCategory = "Todos";
+    [ObservableProperty] private ObservableCollection<string> _categoryOptions = new() { "Todos" };
 
     // ----- resultados -----
     [ObservableProperty] private ObservableCollection<ChangeRow> _rows = new();
@@ -210,14 +211,14 @@ public partial class MainViewModel : ObservableObject
         };
         var max = Math.Max(1, new[] { ImpactLevel.Critical, ImpactLevel.High, ImpactLevel.Medium, ImpactLevel.Low }.Max(l => r.CountByImpact(l)));
         ImpactBars = new(new[] { ImpactLevel.Critical, ImpactLevel.High, ImpactLevel.Medium, ImpactLevel.Low }
-            .Select(l => new BarItem(l.ToString().ToUpperInvariant(), r.CountByImpact(l), (double)r.CountByImpact(l) / max, Palette.Solid(l))));
+            .Select(l => new BarItem(Pt.Impact(l), r.CountByImpact(l), (double)r.CountByImpact(l) / max, Palette.Solid(l))));
 
         var byCat = r.ActualChanges.GroupBy(c => c.Category).Select(g => (g.Key, Count: g.Count())).OrderByDescending(x => x.Count).ToList();
         var maxCat = Math.Max(1, byCat.Count == 0 ? 1 : byCat.Max(x => x.Count));
-        CategoryBars = new(byCat.Select(x => new BarItem(x.Key, x.Count, (double)x.Count / maxCat, Palette.Brush("#2563EB"))));
+        CategoryBars = new(byCat.Select(x => new BarItem(Pt.Category(x.Key), x.Count, (double)x.Count / maxCat, Palette.Brush("#2563EB"))));
 
-        CategoryOptions = new(new[] { "All" }.Concat(r.Changes.Select(c => c.Category).Distinct().OrderBy(c => c)));
-        SelectedCategory = "All"; SelectedChangeType = "All"; SelectedImpact = "All"; SearchText = "";
+        CategoryOptions = new(new[] { "Todos" }.Concat(r.Changes.Select(c => Pt.Category(c.Category)).Distinct().OrderBy(c => c)));
+        SelectedCategory = "Todos"; SelectedChangeType = "Todos"; SelectedImpact = "Todos"; SearchText = "";
         ApplyFilters();
     }
 
@@ -227,10 +228,10 @@ public partial class MainViewModel : ObservableObject
         IEnumerable<ElementChange> q = Result.Changes;
 
         // "All" mostra apenas alterações reais; Unchanged precisa ser pedido explicitamente.
-        q = SelectedChangeType == "All" ? q.Where(c => c.ChangeType != ChangeType.Unchanged)
-                                        : q.Where(c => c.ChangeType.ToString() == SelectedChangeType);
-        if (SelectedImpact != "All") q = q.Where(c => c.Impact.ToString() == SelectedImpact);
-        if (SelectedCategory != "All") q = q.Where(c => c.Category == SelectedCategory);
+        q = SelectedChangeType == "Todos" ? q.Where(c => c.ChangeType != ChangeType.Unchanged)
+                                        : q.Where(c => Pt.ChangeType(c.ChangeType).Equals(SelectedChangeType, StringComparison.OrdinalIgnoreCase));
+        if (SelectedImpact != "Todos") q = q.Where(c => Pt.Impact(c.Impact).Equals(SelectedImpact, StringComparison.OrdinalIgnoreCase));
+        if (SelectedCategory != "Todos") q = q.Where(c => Pt.Category(c.Category) == SelectedCategory);
         if (!string.IsNullOrWhiteSpace(SearchText))
         {
             var s = SearchText.Trim();
@@ -243,7 +244,7 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void ClearFilters() { SearchText = ""; SelectedChangeType = "All"; SelectedImpact = "All"; SelectedCategory = "All"; }
+    private void ClearFilters() { SearchText = ""; SelectedChangeType = "Todos"; SelectedImpact = "Todos"; SelectedCategory = "Todos"; }
 
     [RelayCommand] private void GoToChanges() => ShowChanges = true;
 }

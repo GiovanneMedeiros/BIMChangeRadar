@@ -1,6 +1,7 @@
 using System.Text;
 using BIMChangeRadar.Core.Interfaces;
 using BIMChangeRadar.Core.Models;
+using BIMChangeRadar.Core.Services;
 
 namespace BIMChangeRadar.Infrastructure.Export;
 
@@ -16,8 +17,8 @@ public class CsvReportExporter : IReportExporter
 
     public static readonly string[] Header =
     {
-        "Project", "PreviousSnapshot", "CurrentSnapshot", "AnalysisDate", "ElementId", "Name", "Category",
-        "ChangeType", "Impact", "ChangedProperties", "PreviousValues", "CurrentValues", "ImpactExplanation"
+        "Projeto", "SnapshotAnterior", "SnapshotAtual", "DataAnalise", "IdElemento", "Nome", "Categoria",
+        "TipoAlteracao", "Impacto", "PropriedadesAlteradas", "ValoresAnteriores", "ValoresAtuais", "ExplicacaoImpacto"
     };
 
     public async Task ExportAsync(ComparisonResult result, string path, CancellationToken ct = default)
@@ -35,9 +36,9 @@ public class CsvReportExporter : IReportExporter
             var cells = new[]
             {
                 r.Current.ProjectName, r.Previous.Label, r.Current.Label, date,
-                c.ElementId, c.Name, c.Category, c.ChangeType.ToString().ToUpperInvariant(),
-                c.Impact.ToString().ToUpperInvariant(),
-                string.Join(" | ", props.Select(p => p.PropertyName)),
+                c.ElementId, c.Name, Pt.Category(c.Category), Pt.ChangeType(c.ChangeType),
+                Pt.Impact(c.Impact),
+                string.Join(" | ", props.Select(p => Pt.Property(p.PropertyName))),
                 string.Join(" | ", props.Select(p => p.OldValue ?? "")),
                 string.Join(" | ", props.Select(p => p.NewValue ?? "")),
                 string.Join(" ", c.ImpactReasons)

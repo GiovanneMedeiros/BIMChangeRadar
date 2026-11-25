@@ -50,9 +50,9 @@
 18. **Os impactos são "verdade"?** Não: são estimativas por heurística, e a interface diz isso. Servem para priorizar revisão, não para substituir a avaliação de um engenheiro.
 
 ## 4. Demo sugerida (1 minuto)
-1. Abrir o app → **Load Demo Project**.
+1. Abrir o app → **Carregar projeto demo**.
 2. Mostrar o dashboard (12/8/21/81) e a distribuição de impacto.
-3. Aba Alterações → filtrar `CRITICAL` → abrir **C-105** (coluna mais alta) e **W-104** (3 mudanças + estimativa +4,48 m²).
+3. Aba Alterações → filtrar impacto `Crítico` → abrir **C-105** (coluna mais alta) e **W-104** (3 mudanças + estimativa +4,48 m²).
 4. Exportar CSV e abrir.
 5. Mostrar uma regra (`Rules/PropertyRules.cs`) e rodar `dotnet test`.
 
