@@ -1,0 +1,106 @@
+# BIM Change Radar
+**Intelligent BIM Change Detection & Impact Analysis** · [English version](README.en.md)
+
+Aplicação desktop em C#/.NET que compara duas versões (snapshots) de um modelo BIM, identifica o que foi **adicionado, removido, modificado ou não mudou**, mostra **exatamente quais propriedades mudaram**, estima o **impacto** de cada alteração com regras explicáveis e gera relatórios (CSV e HTML).
+
+![Dashboard](docs/screenshots/02-dashboard.png)
+
+## Problema
+Em projetos BIM, versões do modelo mudam o tempo todo. Descobrir *o que mudou* entre duas versões costuma ser manual (abrir os dois modelos, comparar tabelas, conferir parâmetros), lento e sujeito a erro. Pior: nem toda mudança pesa igual — renomear uma parede é diferente de remover um pilar.
+
+## Objetivo
+Reduzir a comparação manual e priorizar a revisão: responder rapidamente *O que mudou? O que tem maior impacto? O que precisa de revisão?*
+
+## Funcionalidades
+- **Dashboard** com indicadores calculados a partir dos dados carregados (total, adicionados, removidos, modificados, inalterados, total de alterações, alto impacto), distribuição por impacto e por categoria.
+- **Comparação real por `UniqueId`** (chave estável) em O(n+m), com tolerância numérica e normalização de texto para evitar falsos positivos.
+- **Diferença propriedade a propriedade**, incluindo parâmetros personalizados (`Parameters`) adicionados/removidos/alterados.
+- **Impact Analyzer** (LOW / MEDIUM / HIGH / CRITICAL) com regras independentes e motivo explicado para cada decisão.
+- **Estimativa quantitativa** de área/volume (ex.: parede 8,96 m² → 13,44 m², +4,48 m²) — só quando há dados; sempre rotulada como *estimativa*.
+- **Tabela** ordenável, com busca por nome/ID, filtros por tipo de alteração, impacto e categoria; painel de detalhes (valor anterior × atual, tipo, motivo).
+- **Exportação CSV** (Excel pt-BR) e **relatório HTML** autocontido.
+- **Histórico** das análises da sessão e botão **Load Demo Project**.
+
+## Regras de impacto
+| Alteração | Impacto | Motivo |
+|---|---|---|
+| Nome / Mark | LOW | Alteração textual sem mudança geométrica |
+| Parâmetro informativo | LOW | Sem efeito geométrico |
+| Parâmetro crítico (FireRating, LoadBearing…) | HIGH | Ligado a requisitos de desempenho/normas |
+| Material | MEDIUM (HIGH se estrutural) | Especificações, quantitativos, custo |
+| Tipo | MEDIUM | Pode mudar especificação e quantitativos |
+| Categoria / Nível | HIGH | Coordenação, plantas e quantitativos |
+| Dimensão | HIGH (CRITICAL se estrutural) | Quantitativos e elementos relacionados |
+| Elemento adicionado | MEDIUM | Revisão, documentação, quantitativos |
+| Elemento removido | HIGH (CRITICAL se estrutural) | Documentação, quantitativos, coordenação |
+
+O impacto do elemento é o **maior** impacto entre suas alterações. Estruturais: Column, Beam, Floor, Foundation.
+
+## Tecnologias
+C# · .NET 8 · **Avalonia UI** (XAML, desktop multiplataforma) · MVVM com CommunityToolkit.Mvvm · System.Text.Json · LINQ · xUnit · Git
+
+> **Por que Avalonia e não WPF?** O projeto foi desenvolvido em macOS, onde WPF não executa (WPF é exclusivo do Windows). Avalonia usa o mesmo modelo (XAML + MVVM + data binding), roda em Windows/macOS/Linux, e a migração para WPF seria direta na camada de Views. Core e Infrastructure não dependem de UI.
+
+## Arquitetura
+```
+BIMChangeRadar.sln
+├── BIMChangeRadar.Core            # domínio puro, sem UI nem I/O
+│   ├── Models/                    # BimElement, ModelSnapshot, ElementChange, PropertyChange...
+│   ├── Interfaces/                # ISnapshotLoader, ISnapshotComparer, IImpactAnalyzer, IReportExporter, regras
+│   ├── Comparison/                # SnapshotComparer, PropertyDiffer
+│   ├── ImpactAnalysis/            # ImpactAnalyzer (orquestra regras)
+│   ├── Rules/                     # uma classe por regra de impacto
+│   └── Services/                  # QuantityEstimator
+├── BIMChangeRadar.Infrastructure  # JSON, FileSystem, Export (CSV/HTML)
+├── BIMChangeRadar.App             # Avalonia: Views, ViewModels (MVVM), Resources
+├── BIMChangeRadar.Tests           # xUnit (25 testes)
+├── Samples/                       # project-v1.json, project-v2.json (+ gerador)
+├── tools/Screenshots              # renderiza a UI em headless para gerar as imagens do README
+└── docs/                          # INTERVIEW_GUIDE.md e screenshots
+```
+Dependências: `App → Infrastructure → Core`. Para integrar o Revit no futuro basta um novo `ISnapshotLoader`/exportador que gere o mesmo `ModelSnapshot`; nada no Core muda.
+
+## Como executar
+Requisitos: [.NET 8 SDK](https://dotnet.microsoft.com/download).
+```bash
+dotnet run --project BIMChangeRadar.App      # abrir o app
+dotnet test                                   # rodar os testes
+dotnet run --project tools/Screenshots        # (opcional) regenerar screenshots
+```
+
+## Como usar
+1. Clique em **Load Demo Project** (carrega `Samples/project-v1.json` e `project-v2.json` e compara), **ou** use **Selecionar** para escolher suas duas versões e **Comparar versões**.
+2. No **Dashboard**, veja os indicadores e a distribuição de impacto.
+3. Em **Alterações**, pesquise/filtre/ordene e clique numa linha para ver os detalhes.
+4. Exporte com **CSV** ou **HTML**.
+
+### Formato do snapshot JSON
+```json
+{ "projectName": "Edifício Alpha", "version": "2.0", "date": "2026-11-23T14:30:00",
+  "elements": [ { "id": "W-104", "uniqueId": "wall-104", "name": "Wall A", "category": "Wall",
+    "type": "Interior Wall", "level": "Floor 1", "material": "Concrete",
+    "length": 3.2, "height": 2.8, "area": 8.96,
+    "parameters": { "FireRating": "60min", "Comments": "Interior wall" } } ] }
+```
+
+## Exemplo de resultado (dados de demonstração)
+110 → 114 elementos · **12 adicionados · 8 removidos · 21 modificados · 81 inalterados** · 41 alterações · 20 de alto impacto (5 CRITICAL).
+
+Elemento **W-104**: `Length 3.2 → 4.8`, `Material Concrete → Drywall`, `Level Floor 1 → Floor 2` · *"A alteração aumentou aproximadamente 4,48 m² da área estimada deste elemento. Os quantitativos associados podem precisar de revisão."*
+
+![Tabela](docs/screenshots/03-changes.png)
+![Detalhes](docs/screenshots/04-detail.png)
+
+## Testes
+25 testes xUnit cobrindo: adicionados, removidos, modificados, inalterados, parâmetros, diferença de área, classificação de impacto (incl. estrutural), carregamento/validação de JSON, exportação CSV (inclui proteção contra CSV injection) e HTML (escape).
+
+## Limitações atuais
+- **Sem integração com Autodesk Revit** — usa snapshots JSON. A arquitetura está preparada, mas a integração **não está implementada**.
+- Casamento só por `UniqueId`/`Id`; não detecta elemento "recriado" com novo ID.
+- Geometria real não é analisada; quantitativos são estimativas baseadas em dimensões do JSON.
+- Regras de impacto são heurísticas fixas (não configuráveis pela UI).
+- Unidades assumidas em metros; histórico apenas em memória.
+- Interface validada em renderização headless e execução no macOS; não testada em Windows/Linux.
+
+## Roadmap (Future Development)
+Revit API integration · IFC support · Visual model comparison · AI-powered change explanations · Dependency analysis · BIM workflow automation · Advanced reporting (PDF) · regras configuráveis.

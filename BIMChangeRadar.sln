@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIMChangeRadar.Core", "BIMChangeRadar.Core\BIMChangeRadar.Core.csproj", "{6A1B371C-6803-40FD-8298-713332AC42D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIMChangeRadar.Infrastructure", "BIMChangeRadar.Infrastructure\BIMChangeRadar.Infrastructure.csproj", "{45BB1962-96A8-49A3-B226-C187A10E3DBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIMChangeRadar.App", "BIMChangeRadar.App\BIMChangeRadar.App.csproj", "{E721C5B6-9E7C-4AC9-866B-465B08D06F03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIMChangeRadar.Tests", "BIMChangeRadar.Tests\BIMChangeRadar.Tests.csproj", "{BA55A12F-0C7F-423A-8A07-47A5D0EDB078}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{E1ACEDD0-ABD9-4D73-9781-493FE08DEBF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screenshots", "tools\Screenshots\Screenshots.csproj", "{E9AE6A19-6DD7-4C42-A1A0-2BAC9847E5D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A1B371C-6803-40FD-8298-713332AC42D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A1B371C-6803-40FD-8298-713332AC42D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A1B371C-6803-40FD-8298-713332AC42D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A1B371C-6803-40FD-8298-713332AC42D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45BB1962-96A8-49A3-B226-C187A10E3DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45BB1962-96A8-49A3-B226-C187A10E3DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45BB1962-96A8-49A3-B226-C187A10E3DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45BB1962-96A8-49A3-B226-C187A10E3DBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E721C5B6-9E7C-4AC9-866B-465B08D06F03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E721C5B6-9E7C-4AC9-866B-465B08D06F03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E721C5B6-9E7C-4AC9-866B-465B08D06F03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E721C5B6-9E7C-4AC9-866B-465B08D06F03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA55A12F-0C7F-423A-8A07-47A5D0EDB078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA55A12F-0C7F-423A-8A07-47A5D0EDB078}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA55A12F-0C7F-423A-8A07-47A5D0EDB078}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA55A12F-0C7F-423A-8A07-47A5D0EDB078}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9AE6A19-6DD7-4C42-A1A0-2BAC9847E5D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9AE6A19-6DD7-4C42-A1A0-2BAC9847E5D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9AE6A19-6DD7-4C42-A1A0-2BAC9847E5D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9AE6A19-6DD7-4C42-A1A0-2BAC9847E5D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E9AE6A19-6DD7-4C42-A1A0-2BAC9847E5D7} = {E1ACEDD0-ABD9-4D73-9781-493FE08DEBF2}
+	EndGlobalSection
+EndGlobal

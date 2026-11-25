@@ -1,0 +1,267 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="BIMChangeRadar.App.Views.MainWindow"
+        Title="BIM Change Radar" Width="1500" Height="880" MinWidth="1100" MinHeight="680"
+        Background="{StaticResource Canvas}" WindowStartupLocation="CenterScreen">
+  <Grid ColumnDefinitions="220,*">
+
+    <!-- ===== Sidebar ===== -->
+    <Border Background="{StaticResource Navy}" Padding="16,20">
+      <DockPanel LastChildFill="False">
+        <StackPanel DockPanel.Dock="Top" Spacing="4">
+          <StackPanel Orientation="Horizontal" Spacing="10" Margin="6,0,0,24">
+            <Border Background="{StaticResource Primary}" CornerRadius="10" Width="38" Height="38">
+              <PathIcon Data="{StaticResource IconRadar}" Foreground="White" Width="22" Height="22" />
+            </Border>
+            <StackPanel VerticalAlignment="Center">
+              <TextBlock Text="BIM Change" Foreground="White" FontWeight="Bold" FontSize="15" />
+              <TextBlock Text="Radar" Foreground="#7FA2E8" FontWeight="Bold" FontSize="15" Margin="0,-2,0,0" />
+            </StackPanel>
+          </StackPanel>
+
+          <RadioButton Classes="nav" GroupName="nav" IsChecked="{Binding ShowOverview, Mode=TwoWay}">
+            <StackPanel Orientation="Horizontal" Spacing="12"><PathIcon Data="{StaticResource IconDashboard}" Width="16" Height="16" /><TextBlock Text="Dashboard" Foreground="{Binding $parent[RadioButton].Foreground}" /></StackPanel>
+          </RadioButton>
+          <RadioButton Classes="nav" GroupName="nav" IsChecked="{Binding ShowChanges, Mode=TwoWay}">
+            <StackPanel Orientation="Horizontal" Spacing="12"><PathIcon Data="{StaticResource IconTable}" Width="16" Height="16" /><TextBlock Text="Alterações" Foreground="{Binding $parent[RadioButton].Foreground}" /></StackPanel>
+          </RadioButton>
+          <RadioButton Classes="nav" GroupName="nav" IsChecked="{Binding ShowHistory, Mode=TwoWay}">
+            <StackPanel Orientation="Horizontal" Spacing="12"><PathIcon Data="{StaticResource IconHistory}" Width="16" Height="16" /><TextBlock Text="Histórico" Foreground="{Binding $parent[RadioButton].Foreground}" /></StackPanel>
+          </RadioButton>
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Bottom" Spacing="6" Margin="6,0">
+          <TextBlock Text="MVP · snapshots JSON" Foreground="#9FB3D9" FontSize="12" FontWeight="SemiBold" />
+          <TextBlock Text="Sem integração com Autodesk Revit nesta versão. Arquitetura preparada para um futuro adaptador." Foreground="#6F85B3" FontSize="11" TextWrapping="Wrap" />
+        </StackPanel>
+      </DockPanel>
+    </Border>
+
+    <!-- ===== Conteúdo ===== -->
+    <Grid Grid.Column="1" RowDefinitions="Auto,Auto,Auto,*,Auto" Margin="28,22,28,12">
+
+      <StackPanel Grid.Row="0" Margin="0,0,0,16">
+        <TextBlock Classes="h1" Text="BIM Change Radar" />
+        <TextBlock Classes="muted" Text="Intelligent BIM Change Detection &amp; Impact Analysis" />
+      </StackPanel>
+
+      <!-- Seletor de versões -->
+      <Border Grid.Row="1" Classes="card" Margin="0,0,0,14">
+        <Grid ColumnDefinitions="*,*,Auto" RowDefinitions="Auto,Auto">
+          <Grid ColumnDefinitions="*,Auto" Margin="0,0,16,0">
+            <StackPanel>
+              <TextBlock Classes="label" Text="VERSÃO ANTERIOR" />
+              <TextBlock Text="{Binding PreviousPath}" TextTrimming="CharacterEllipsis" Margin="0,4,12,0" />
+            </StackPanel>
+            <Button Grid.Column="1" Classes="secondary" Command="{Binding SelectPreviousCommand}" VerticalAlignment="Bottom">
+              <StackPanel Orientation="Horizontal" Spacing="8"><PathIcon Data="{StaticResource IconFolder}" Width="14" Height="14" /><TextBlock Text="Selecionar" /></StackPanel>
+            </Button>
+          </Grid>
+          <Grid Grid.Column="1" ColumnDefinitions="*,Auto" Margin="0,0,16,0">
+            <StackPanel>
+              <TextBlock Classes="label" Text="VERSÃO ATUAL" />
+              <TextBlock Text="{Binding CurrentPath}" TextTrimming="CharacterEllipsis" Margin="0,4,12,0" />
+            </StackPanel>
+            <Button Grid.Column="1" Classes="secondary" Command="{Binding SelectCurrentCommand}" VerticalAlignment="Bottom">
+              <StackPanel Orientation="Horizontal" Spacing="8"><PathIcon Data="{StaticResource IconFolder}" Width="14" Height="14" /><TextBlock Text="Selecionar" /></StackPanel>
+            </Button>
+          </Grid>
+          <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" VerticalAlignment="Bottom">
+            <Button Classes="secondary" Command="{Binding LoadDemoCommand}"><StackPanel Orientation="Horizontal" Spacing="8"><PathIcon Data="{StaticResource IconPlay}" Width="14" Height="14" /><TextBlock Text="Load Demo Project" /></StackPanel></Button>
+            <Button Classes="primary" Command="{Binding CompareCommand}"><StackPanel Orientation="Horizontal" Spacing="8"><PathIcon Data="{StaticResource IconCompare}" Width="14" Height="14" Foreground="White" /><TextBlock Text="Comparar versões" Foreground="White" /></StackPanel></Button>
+            <Button Classes="secondary" Command="{Binding ExportCsvCommand}"><StackPanel Orientation="Horizontal" Spacing="8"><PathIcon Data="{StaticResource IconDownload}" Width="14" Height="14" /><TextBlock Text="CSV" /></StackPanel></Button>
+            <Button Classes="secondary" Command="{Binding ExportHtmlCommand}"><StackPanel Orientation="Horizontal" Spacing="8"><PathIcon Data="{StaticResource IconDownload}" Width="14" Height="14" /><TextBlock Text="HTML" /></StackPanel></Button>
+          </StackPanel>
+        </Grid>
+      </Border>
+
+      <!-- Erro -->
+      <Border Grid.Row="2" IsVisible="{Binding HasError}" Background="#FDE3E3" BorderBrush="#E8A3A3" BorderThickness="1" CornerRadius="8" Padding="12,8" Margin="0,0,0,12">
+        <TextBlock Text="{Binding ErrorMessage}" Foreground="#A12020" TextWrapping="Wrap" />
+      </Border>
+
+      <!-- Páginas -->
+      <Grid Grid.Row="3">
+
+        <!-- Estado vazio -->
+        <Border Classes="card" IsVisible="{Binding HasNoResult}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="48">
+          <StackPanel Spacing="10" HorizontalAlignment="Center">
+            <PathIcon Data="{StaticResource IconRadar}" Width="48" Height="48" Foreground="#9AB1E6" />
+            <TextBlock Classes="h2" Text="Nenhuma comparação realizada" HorizontalAlignment="Center" />
+            <TextBlock Classes="muted" Text="Selecione duas versões (JSON) e clique em Comparar versões, ou carregue o projeto de demonstração." TextWrapping="Wrap" TextAlignment="Center" MaxWidth="420" />
+          </StackPanel>
+        </Border>
+
+        <!-- Dashboard -->
+        <ScrollViewer IsVisible="{Binding ShowOverview}" VerticalScrollBarVisibility="Auto">
+          <StackPanel IsVisible="{Binding HasResult}" Spacing="14">
+            <TextBlock Classes="muted" Text="{Binding AnalysisInfo}" TextWrapping="Wrap" />
+            <ItemsControl ItemsSource="{Binding Cards}">
+              <ItemsControl.ItemsPanel><ItemsPanelTemplate><UniformGrid Rows="1" /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <Border Classes="card" Margin="0,0,10,0" Padding="14">
+                    <Grid ColumnDefinitions="4,*">
+                      <Border Background="{Binding Accent}" CornerRadius="2" />
+                      <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                        <TextBlock Classes="label" Text="{Binding Label}" />
+                        <TextBlock Text="{Binding Value}" FontSize="30" FontWeight="Bold" />
+                        <TextBlock Classes="muted" Text="{Binding Hint}" FontSize="11" />
+                      </StackPanel>
+                    </Grid>
+                  </Border>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <Grid ColumnDefinitions="*,*" >
+              <Border Classes="card" Margin="0,0,7,0">
+                <StackPanel Spacing="10">
+                  <TextBlock Classes="h2" Text="Distribuição por impacto" />
+                  <ItemsControl ItemsSource="{Binding ImpactBars}">
+                    <ItemsControl.ItemTemplate><DataTemplate>
+                      <Grid ColumnDefinitions="90,*,40" Margin="0,4">
+                        <TextBlock Text="{Binding Label}" FontSize="12" FontWeight="SemiBold" VerticalAlignment="Center" />
+                        <ProgressBar Grid.Column="1" Minimum="0" Maximum="1" Value="{Binding Fraction}" Foreground="{Binding Color}" Background="#EDF0F6" Height="10" CornerRadius="5" />
+                        <TextBlock Grid.Column="2" Text="{Binding Value}" HorizontalAlignment="Right" FontWeight="Bold" />
+                      </Grid>
+                    </DataTemplate></ItemsControl.ItemTemplate>
+                  </ItemsControl>
+                </StackPanel>
+              </Border>
+              <Border Grid.Column="1" Classes="card" Margin="7,0,0,0">
+                <StackPanel Spacing="10">
+                  <TextBlock Classes="h2" Text="Alterações por categoria" />
+                  <ItemsControl ItemsSource="{Binding CategoryBars}">
+                    <ItemsControl.ItemTemplate><DataTemplate>
+                      <Grid ColumnDefinitions="90,*,40" Margin="0,4">
+                        <TextBlock Text="{Binding Label}" FontSize="12" FontWeight="SemiBold" VerticalAlignment="Center" />
+                        <ProgressBar Grid.Column="1" Minimum="0" Maximum="1" Value="{Binding Fraction}" Foreground="{Binding Color}" Background="#EDF0F6" Height="10" CornerRadius="5" />
+                        <TextBlock Grid.Column="2" Text="{Binding Value}" HorizontalAlignment="Right" FontWeight="Bold" />
+                      </Grid>
+                    </DataTemplate></ItemsControl.ItemTemplate>
+                  </ItemsControl>
+                </StackPanel>
+              </Border>
+            </Grid>
+            <Button Classes="primary" HorizontalAlignment="Left" Command="{Binding GoToChangesCommand}" Content="Ver tabela de alterações" />
+          </StackPanel>
+        </ScrollViewer>
+
+        <!-- Alterações -->
+        <Grid IsVisible="{Binding ShowChanges}" RowDefinitions="Auto,*">
+          <Grid IsVisible="{Binding HasResult}" ColumnDefinitions="*,360" RowDefinitions="Auto,*" Grid.RowSpan="2">
+            <Border Classes="card" Padding="12" Margin="0,0,0,12" Grid.ColumnSpan="2">
+              <StackPanel Orientation="Horizontal" Spacing="12">
+                <TextBox Width="260" Watermark="Pesquisar por nome ou ID…" Text="{Binding SearchText}" />
+                <ComboBox ItemsSource="{Binding ChangeTypeOptions}" SelectedItem="{Binding SelectedChangeType}" Width="130" />
+                <ComboBox ItemsSource="{Binding ImpactOptions}" SelectedItem="{Binding SelectedImpact}" Width="120" />
+                <ComboBox ItemsSource="{Binding CategoryOptions}" SelectedItem="{Binding SelectedCategory}" Width="140" />
+                <Button Classes="secondary" Command="{Binding ClearFiltersCommand}" Content="Limpar" />
+                <TextBlock Classes="muted" Text="{Binding RowCountText}" VerticalAlignment="Center" />
+              </StackPanel>
+            </Border>
+
+            <Border Grid.Row="1" Classes="card" Padding="0" Margin="0,0,12,0">
+              <DataGrid ItemsSource="{Binding Rows}" SelectedItem="{Binding SelectedRow, Mode=TwoWay}" AutoGenerateColumns="False"
+                        IsReadOnly="True" CanUserSortColumns="True" CanUserResizeColumns="True" SelectionMode="Single" CornerRadius="10">
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header="ELEMENT ID" Binding="{Binding ElementId}" Width="118" />
+                  <DataGridTextColumn Header="NAME" Binding="{Binding Name}" Width="115" />
+                  <DataGridTextColumn Header="CATEGORY" Binding="{Binding Category}" Width="108" />
+                  <DataGridTemplateColumn Header="CHANGE TYPE" SortMemberPath="ChangeTypeText" Width="125">
+                    <DataGridTemplateColumn.CellTemplate><DataTemplate>
+                      <Border Classes="badge" Background="{Binding ChangeBg}" VerticalAlignment="Center" Margin="8,0"><TextBlock Text="{Binding ChangeTypeText}" Foreground="{Binding ChangeFg}" /></Border>
+                    </DataTemplate></DataGridTemplateColumn.CellTemplate>
+                  </DataGridTemplateColumn>
+                  <DataGridTemplateColumn Header="IMPACT" SortMemberPath="ImpactOrder" Width="100">
+                    <DataGridTemplateColumn.CellTemplate><DataTemplate>
+                      <Border Classes="badge" Background="{Binding ImpactBg}" VerticalAlignment="Center" Margin="8,0"><TextBlock Text="{Binding ImpactText}" Foreground="{Binding ImpactFg}" /></Border>
+                    </DataTemplate></DataGridTemplateColumn.CellTemplate>
+                  </DataGridTemplateColumn>
+                  <DataGridTextColumn Header="CHANGED PROPERTIES" Binding="{Binding ChangedProperties}" Width="190" />
+                  <DataGridTextColumn Header="SUMMARY" Binding="{Binding Summary}" Width="*" />
+                </DataGrid.Columns>
+              </DataGrid>
+            </Border>
+
+            <!-- Detalhes -->
+            <Border Grid.Row="1" Grid.Column="1" Classes="card">
+              <Grid>
+                <StackPanel IsVisible="{Binding HasNoSelection}" VerticalAlignment="Center" Spacing="6">
+                  <TextBlock Classes="h2" Text="Detalhes da alteração" HorizontalAlignment="Center" />
+                  <TextBlock Classes="muted" Text="Selecione uma linha da tabela." HorizontalAlignment="Center" />
+                </StackPanel>
+                <ScrollViewer IsVisible="{Binding HasSelection}" VerticalScrollBarVisibility="Auto">
+                  <StackPanel Spacing="12" Margin="0,0,14,0" DataContext="{Binding SelectedRow}">
+                    <StackPanel>
+                      <TextBlock Text="{Binding ElementId}" Classes="label" />
+                      <TextBlock Text="{Binding Name}" Classes="h1" FontSize="18" TextWrapping="Wrap" />
+                      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,6,0,0">
+                        <Border Classes="badge" Background="{Binding ChangeBg}"><TextBlock Text="{Binding ChangeTypeText}" Foreground="{Binding ChangeFg}" /></Border>
+                        <Border Classes="badge" Background="{Binding ImpactBg}"><TextBlock Text="{Binding ImpactText}" Foreground="{Binding ImpactFg}" /></Border>
+                        <TextBlock Classes="muted" Text="{Binding Category}" VerticalAlignment="Center" />
+                      </StackPanel>
+                    </StackPanel>
+                    <StackPanel Spacing="4" DataContext="{Binding $parent[Window].DataContext}">
+                      <TextBlock Classes="label" Text="PROPRIEDADES ALTERADAS" IsVisible="{Binding PropertyRows.Count}" />
+                      <ListBox ItemsSource="{Binding PropertyRows}" SelectedItem="{Binding SelectedProperty}" Background="Transparent">
+                        <ListBox.ItemTemplate><DataTemplate>
+                          <Grid ColumnDefinitions="*,Auto" Margin="2,2">
+                            <TextBlock Text="{Binding Name}" FontWeight="SemiBold" />
+                            <Border Grid.Column="1" Classes="badge" Background="{Binding Bg}"><TextBlock Text="{Binding ImpactText}" Foreground="{Binding Fg}" /></Border>
+                          </Grid>
+                        </DataTemplate></ListBox.ItemTemplate>
+                      </ListBox>
+
+                      <Border Background="#F4F6FA" CornerRadius="8" Padding="12" IsVisible="{Binding SelectedProperty, Converter={x:Static ObjectConverters.IsNotNull}}">
+                        <StackPanel Spacing="6" DataContext="{Binding SelectedProperty}">
+                          <TextBlock Classes="label" Text="PROPRIEDADE" /><TextBlock Text="{Binding Name}" FontWeight="SemiBold" />
+                          <Grid ColumnDefinitions="*,*">
+                            <StackPanel><TextBlock Classes="label" Text="VALOR ANTERIOR" /><TextBlock Text="{Binding Old}" Foreground="#A12020" FontWeight="SemiBold" TextWrapping="Wrap" /></StackPanel>
+                            <StackPanel Grid.Column="1"><TextBlock Classes="label" Text="VALOR ATUAL" /><TextBlock Text="{Binding New}" Foreground="#12713A" FontWeight="SemiBold" TextWrapping="Wrap" /></StackPanel>
+                          </Grid>
+                          <TextBlock Classes="label" Text="TIPO DE ALTERAÇÃO" /><TextBlock Text="{Binding Kind}" />
+                          <TextBlock Classes="muted" Text="{Binding Change.ImpactReason}" TextWrapping="Wrap" />
+                        </StackPanel>
+                      </Border>
+
+                      <TextBlock Classes="label" Text="POR QUE ESTE IMPACTO?" Margin="0,8,0,0" />
+                      <TextBlock Text="{Binding ImpactReasonsText}" TextWrapping="Wrap" />
+
+                      <Border Background="#EEF4FF" BorderBrush="#BFD3FA" BorderThickness="1" CornerRadius="8" Padding="12" IsVisible="{Binding HasQuantity}" Margin="0,6,0,0">
+                        <StackPanel Spacing="4">
+                          <TextBlock Classes="label" Text="ESTIMATIVA DE QUANTITATIVO" />
+                          <TextBlock Text="{Binding QuantityText}" TextWrapping="Wrap" />
+                        </StackPanel>
+                      </Border>
+                    </StackPanel>
+                  </StackPanel>
+                </ScrollViewer>
+              </Grid>
+            </Border>
+          </Grid>
+        </Grid>
+
+        <!-- Histórico -->
+        <Border Classes="card" IsVisible="{Binding ShowHistory}" VerticalAlignment="Top">
+          <StackPanel Spacing="10">
+            <TextBlock Classes="h2" Text="Histórico de análises (sessão atual)" />
+            <TextBlock Classes="muted" Text="Nenhuma análise ainda." IsVisible="{Binding !History.Count}" />
+            <ListBox ItemsSource="{Binding History}" SelectedItem="{Binding SelectedHistory}" Background="Transparent">
+              <ListBox.ItemTemplate><DataTemplate>
+                <StackPanel Margin="4,6">
+                  <TextBlock Text="{Binding Title}" FontWeight="SemiBold" />
+                  <TextBlock Classes="muted" Text="{Binding Counts}" />
+                  <TextBlock Classes="muted" Text="{Binding When}" />
+                </StackPanel>
+              </DataTemplate></ListBox.ItemTemplate>
+            </ListBox>
+          </StackPanel>
+        </Border>
+      </Grid>
+
+      <TextBlock Grid.Row="4" Classes="muted" Text="{Binding StatusMessage}" Margin="0,10,0,0" TextTrimming="CharacterEllipsis" />
+    </Grid>
+  </Grid>
+</Window>

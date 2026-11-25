@@ -1,0 +1,2040 @@
+{
+  "projectName": "Edifício Alpha",
+  "version": "1.0",
+  "date": "2026-11-20T09:00:00",
+  "source": "json-sample",
+  "elements": [
+    {
+      "id": "W-101",
+      "uniqueId": "wall-101",
+      "name": "Wall A101",
+      "category": "Wall",
+      "type": "Interior Wall",
+      "level": "Floor 1",
+      "material": "Brick",
+      "length": 3.0,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-101",
+      "parameters": {
+        "Mark": "W-101",
+        "FireRating": "60min",
+        "Comments": "Interior wall"
+      },
+      "area": 8.4,
+      "volume": 1.68
+    },
+    {
+      "id": "W-102",
+      "uniqueId": "wall-102",
+      "name": "Wall B102",
+      "category": "Wall",
+      "type": "Interior Wall",
+      "level": "Floor 2",
+      "material": "Drywall",
+      "length": 3.6,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-102",
+      "parameters": {
+        "Mark": "W-102",
+        "FireRating": "90min",
+        "Comments": "Interior wall"
+      },
+      "area": 10.08,
+      "volume": 2.02
+    },
+    {
+      "id": "W-103",
+      "uniqueId": "wall-103",
+      "name": "Wall C103",
+      "category": "Wall",
+      "type": "Interior Wall",
+      "level": "Floor 3",
+      "material": "Concrete",
+      "length": 4.2,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-103",
+      "parameters": {
+        "Mark": "W-103",
+        "FireRating": "30min",
+        "Comments": "Interior wall"
+      },
+      "area": 11.76,
+      "volume": 2.35
+    },
+    {
+      "id": "W-104",
+      "uniqueId": "wall-104",
+      "name": "Wall A",
+      "category": "Wall",
+      "type": "Exterior Wall",
+      "level": "Floor 1",
+      "material": "Concrete",
+      "length": 3.2,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-104",
+      "parameters": {
+        "Mark": "W-104",
+        "FireRating": "60min",
+        "Comments": "Exterior wall"
+      },
+      "area": 8.96,
+      "volume": 1.79
+    },
+    {
+      "id": "W-105",
+      "uniqueId": "wall-105",
+      "name": "Wall E105",
+      "category": "Wall",
+      "type": "Interior Wall",
+      "level": "Floor 2",
+      "material": "Drywall",
+      "length": 5.4,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-105",
+      "parameters": {
+        "Mark": "W-105",
+        "FireRating": "90min",
+        "Comments": "Interior wall"
+      },
+      "area": 15.12,
+      "volume": 3.02
+    },
+    {
+      "id": "W-106",
+      "uniqueId": "wall-106",
+      "name": "Wall F106",
+      "category": "Wall",
+      "type": "Interior Wall",
+      "level": "Floor 3",
+      "material": "Concrete",
+      "length": 6.0,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-106",
+      "parameters": {
+        "Mark": "W-106",
+        "FireRating": "30min",
+        "Comments": "Interior wall"
+      },
+      "area": 16.8,
+      "volume": 3.36
+    },
+    {
+      "id": "W-107",
+      "uniqueId": "wall-107",
+      "name": "Wall G107",
+      "category": "Wall",
+      "type": "Interior Wall",
+      "level": "Floor 1",
+      "material": "Brick",
+      "length": 2.4,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-107",
+      "parameters": {
+        "Mark": "W-107",
+        "FireRating": "60min",
+        "Comments": "Interior wall"
+      },
+      "area": 6.72,
+      "volume": 1.34
+    },
+    {
+      "id": "W-108",
+      "uniqueId": "wall-108",
+      "name": "Wall H108",
+      "category": "Wall",
+      "type": "Exterior Wall",
+      "level": "Floor 2",
+      "material": "Drywall",
+      "length": 3.0,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-108",
+      "parameters": {
+        "Mark": "W-108",
+        "FireRating": "90min",
+        "Comments": "Exterior wall"
+      },
+      "area": 8.4,
+      "volume": 1.68
+    },
+    {
+      "id": "W-109",
+      "uniqueId": "wall-109",
+      "name": "Wall I109",
+      "category": "Wall",
+      "type": "Interior Wall",
+      "level": "Floor 3",
+      "material": "Concrete",
+      "length": 3.6,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-109",
+      "parameters": {
+        "Mark": "W-109",
+        "FireRating": "30min",
+        "Comments": "Interior wall"
+      },
+      "area": 10.08,
+      "volume": 2.02
+    },
+    {
+      "id": "W-110",
+      "uniqueId": "wall-110",
+      "name": "Wall J110",
+      "category": "Wall",
+      "type": "Interior Wall",
+      "level": "Floor 1",
+      "material": "Brick",
+      "length": 4.2,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-110",
+      "parameters": {
+        "Mark": "W-110",
+        "FireRating": "60min",
+        "Comments": "Interior wall"
+      },
+      "area": 11.76,
+      "volume": 2.35
+    },
+    {
+      "id": "W-111",
+      "uniqueId": "wall-111",
+      "name": "Wall K111",
+      "category": "Wall",
+      "type": "Interior Wall",
+      "level": "Floor 2",
+      "material": "Drywall",
+      "length": 4.8,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-111",
+      "parameters": {
+        "Mark": "W-111",
+        "FireRating": "90min",
+        "Comments": "Interior wall"
+      },
+      "area": 13.44,
+      "volume": 2.69
+    },
+    {
+      "id": "W-112",
+      "uniqueId": "wall-112",
+      "name": "Wall L112",
+      "category": "Wall",
+      "type": "Exterior Wall",
+      "level": "Floor 3",
+      "material": "Concrete",
+      "length": 5.4,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-112",
+      "parameters": {
+        "Mark": "W-112",
+        "FireRating": "30min",
+        "Comments": "Exterior wall"
+      },
+      "area": 15.12,
+      "volume": 3.02
+    },
+    {
+      "id": "W-113",
+      "uniqueId": "wall-113",
+      "name": "Wall M113",
+      "category": "Wall",
+      "type": "Interior Wall",
+      "level": "Floor 1",
+      "material": "Brick",
+      "length": 6.0,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-113",
+      "parameters": {
+        "Mark": "W-113",
+        "FireRating": "60min",
+        "Comments": "Interior wall"
+      },
+      "area": 16.8,
+      "volume": 3.36
+    },
+    {
+      "id": "W-114",
+      "uniqueId": "wall-114",
+      "name": "Wall N114",
+      "category": "Wall",
+      "type": "Interior Wall",
+      "level": "Floor 2",
+      "material": "Drywall",
+      "length": 2.4,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-114",
+      "parameters": {
+        "Mark": "W-114",
+        "FireRating": "90min",
+        "Comments": "Interior wall"
+      },
+      "area": 6.72,
+      "volume": 1.34
+    },
+    {
+      "id": "W-115",
+      "uniqueId": "wall-115",
+      "name": "Wall O115",
+      "category": "Wall",
+      "type": "Interior Wall",
+      "level": "Floor 3",
+      "material": "Concrete",
+      "length": 3.0,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-115",
+      "parameters": {
+        "Mark": "W-115",
+        "FireRating": "30min",
+        "Comments": "Interior wall"
+      },
+      "area": 8.4,
+      "volume": 1.68
+    },
+    {
+      "id": "W-116",
+      "uniqueId": "wall-116",
+      "name": "Wall P116",
+      "category": "Wall",
+      "type": "Exterior Wall",
+      "level": "Floor 1",
+      "material": "Brick",
+      "length": 3.6,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-116",
+      "parameters": {
+        "Mark": "W-116",
+        "FireRating": "60min",
+        "Comments": "Exterior wall"
+      },
+      "area": 10.08,
+      "volume": 2.02
+    },
+    {
+      "id": "W-117",
+      "uniqueId": "wall-117",
+      "name": "Wall Q117",
+      "category": "Wall",
+      "type": "Interior Wall",
+      "level": "Floor 2",
+      "material": "Drywall",
+      "length": 4.2,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-117",
+      "parameters": {
+        "Mark": "W-117",
+        "FireRating": "90min",
+        "Comments": "Interior wall"
+      },
+      "area": 11.76,
+      "volume": 2.35
+    },
+    {
+      "id": "W-118",
+      "uniqueId": "wall-118",
+      "name": "Wall R118",
+      "category": "Wall",
+      "type": "Interior Wall",
+      "level": "Floor 3",
+      "material": "Concrete",
+      "length": 4.8,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-118",
+      "parameters": {
+        "Mark": "W-118",
+        "FireRating": "30min",
+        "Comments": "Interior wall"
+      },
+      "area": 13.44,
+      "volume": 2.69
+    },
+    {
+      "id": "W-119",
+      "uniqueId": "wall-119",
+      "name": "Wall S119",
+      "category": "Wall",
+      "type": "Interior Wall",
+      "level": "Floor 1",
+      "material": "Brick",
+      "length": 5.4,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-119",
+      "parameters": {
+        "Mark": "W-119",
+        "FireRating": "60min",
+        "Comments": "Interior wall"
+      },
+      "area": 15.12,
+      "volume": 3.02
+    },
+    {
+      "id": "W-120",
+      "uniqueId": "wall-120",
+      "name": "Wall T120",
+      "category": "Wall",
+      "type": "Exterior Wall",
+      "level": "Floor 2",
+      "material": "Drywall",
+      "length": 6.0,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-120",
+      "parameters": {
+        "Mark": "W-120",
+        "FireRating": "90min",
+        "Comments": "Exterior wall"
+      },
+      "area": 16.8,
+      "volume": 3.36
+    },
+    {
+      "id": "W-121",
+      "uniqueId": "wall-121",
+      "name": "Wall U121",
+      "category": "Wall",
+      "type": "Interior Wall",
+      "level": "Floor 3",
+      "material": "Concrete",
+      "length": 2.4,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-121",
+      "parameters": {
+        "Mark": "W-121",
+        "FireRating": "30min",
+        "Comments": "Interior wall"
+      },
+      "area": 6.72,
+      "volume": 1.34
+    },
+    {
+      "id": "W-122",
+      "uniqueId": "wall-122",
+      "name": "Wall V122",
+      "category": "Wall",
+      "type": "Interior Wall",
+      "level": "Floor 1",
+      "material": "Brick",
+      "length": 3.0,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-122",
+      "parameters": {
+        "Mark": "W-122",
+        "FireRating": "60min",
+        "Comments": "Interior wall"
+      },
+      "area": 8.4,
+      "volume": 1.68
+    },
+    {
+      "id": "W-123",
+      "uniqueId": "wall-123",
+      "name": "Wall W123",
+      "category": "Wall",
+      "type": "Interior Wall",
+      "level": "Floor 2",
+      "material": "Drywall",
+      "length": 3.6,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-123",
+      "parameters": {
+        "Mark": "W-123",
+        "FireRating": "90min",
+        "Comments": "Interior wall"
+      },
+      "area": 10.08,
+      "volume": 2.02
+    },
+    {
+      "id": "W-124",
+      "uniqueId": "wall-124",
+      "name": "Wall X124",
+      "category": "Wall",
+      "type": "Exterior Wall",
+      "level": "Floor 3",
+      "material": "Concrete",
+      "length": 4.2,
+      "height": 2.8,
+      "width": 0.2,
+      "mark": "W-124",
+      "parameters": {
+        "Mark": "W-124",
+        "FireRating": "30min",
+        "Comments": "Exterior wall"
+      },
+      "area": 11.76,
+      "volume": 2.35
+    },
+    {
+      "id": "D-101",
+      "uniqueId": "door-101",
+      "name": "Door 1",
+      "category": "Door",
+      "type": "Single Flush",
+      "level": "Floor 1",
+      "material": "Wood",
+      "width": 0.9,
+      "height": 2.1,
+      "mark": "D-101",
+      "parameters": {
+        "Mark": "D-101",
+        "FireRating": "20min",
+        "Hardware": "Standard"
+      },
+      "area": 1.89
+    },
+    {
+      "id": "D-102",
+      "uniqueId": "door-102",
+      "name": "Door 2",
+      "category": "Door",
+      "type": "Double Flush",
+      "level": "Floor 2",
+      "material": "Wood",
+      "width": 0.9,
+      "height": 2.1,
+      "mark": "D-102",
+      "parameters": {
+        "Mark": "D-102",
+        "FireRating": "45min",
+        "Hardware": "Standard"
+      },
+      "area": 1.89
+    },
+    {
+      "id": "D-103",
+      "uniqueId": "door-103",
+      "name": "Door 3",
+      "category": "Door",
+      "type": "Single Flush",
+      "level": "Floor 3",
+      "material": "Steel",
+      "width": 1.0,
+      "height": 2.1,
+      "mark": "D-103",
+      "parameters": {
+        "Mark": "D-103",
+        "FireRating": "20min",
+        "Hardware": "Standard"
+      },
+      "area": 2.1
+    },
+    {
+      "id": "D-104",
+      "uniqueId": "door-104",
+      "name": "Door 4",
+      "category": "Door",
+      "type": "Double Flush",
+      "level": "Floor 1",
+      "material": "Wood",
+      "width": 0.9,
+      "height": 2.1,
+      "mark": "D-104",
+      "parameters": {
+        "Mark": "D-104",
+        "FireRating": "45min",
+        "Hardware": "Standard"
+      },
+      "area": 1.89
+    },
+    {
+      "id": "D-105",
+      "uniqueId": "door-105",
+      "name": "Door 5",
+      "category": "Door",
+      "type": "Single Flush",
+      "level": "Floor 2",
+      "material": "Wood",
+      "width": 0.9,
+      "height": 2.1,
+      "mark": "D-105",
+      "parameters": {
+        "Mark": "D-105",
+        "FireRating": "20min",
+        "Hardware": "Standard"
+      },
+      "area": 1.89
+    },
+    {
+      "id": "D-106",
+      "uniqueId": "door-106",
+      "name": "Door 6",
+      "category": "Door",
+      "type": "Double Flush",
+      "level": "Floor 3",
+      "material": "Steel",
+      "width": 1.0,
+      "height": 2.1,
+      "mark": "D-106",
+      "parameters": {
+        "Mark": "D-106",
+        "FireRating": "45min",
+        "Hardware": "Standard"
+      },
+      "area": 2.1
+    },
+    {
+      "id": "D-107",
+      "uniqueId": "door-107",
+      "name": "Door 7",
+      "category": "Door",
+      "type": "Single Flush",
+      "level": "Floor 1",
+      "material": "Wood",
+      "width": 0.9,
+      "height": 2.1,
+      "mark": "D-107",
+      "parameters": {
+        "Mark": "D-107",
+        "FireRating": "20min",
+        "Hardware": "Standard"
+      },
+      "area": 1.89
+    },
+    {
+      "id": "D-108",
+      "uniqueId": "door-108",
+      "name": "Door 8",
+      "category": "Door",
+      "type": "Double Flush",
+      "level": "Floor 2",
+      "material": "Wood",
+      "width": 0.9,
+      "height": 2.1,
+      "mark": "D-108",
+      "parameters": {
+        "Mark": "D-108",
+        "FireRating": "45min",
+        "Hardware": "Standard"
+      },
+      "area": 1.89
+    },
+    {
+      "id": "D-109",
+      "uniqueId": "door-109",
+      "name": "Door 9",
+      "category": "Door",
+      "type": "Single Flush",
+      "level": "Floor 3",
+      "material": "Steel",
+      "width": 1.0,
+      "height": 2.1,
+      "mark": "D-109",
+      "parameters": {
+        "Mark": "D-109",
+        "FireRating": "20min",
+        "Hardware": "Standard"
+      },
+      "area": 2.1
+    },
+    {
+      "id": "D-110",
+      "uniqueId": "door-110",
+      "name": "Door 10",
+      "category": "Door",
+      "type": "Double Flush",
+      "level": "Floor 1",
+      "material": "Wood",
+      "width": 0.9,
+      "height": 2.1,
+      "mark": "D-110",
+      "parameters": {
+        "Mark": "D-110",
+        "FireRating": "45min",
+        "Hardware": "Standard"
+      },
+      "area": 1.89
+    },
+    {
+      "id": "D-111",
+      "uniqueId": "door-111",
+      "name": "Door 11",
+      "category": "Door",
+      "type": "Single Flush",
+      "level": "Floor 2",
+      "material": "Wood",
+      "width": 0.9,
+      "height": 2.1,
+      "mark": "D-111",
+      "parameters": {
+        "Mark": "D-111",
+        "FireRating": "20min",
+        "Hardware": "Standard"
+      },
+      "area": 1.89
+    },
+    {
+      "id": "D-112",
+      "uniqueId": "door-112",
+      "name": "Door 12",
+      "category": "Door",
+      "type": "Double Flush",
+      "level": "Floor 3",
+      "material": "Steel",
+      "width": 1.0,
+      "height": 2.1,
+      "mark": "D-112",
+      "parameters": {
+        "Mark": "D-112",
+        "FireRating": "45min",
+        "Hardware": "Standard"
+      },
+      "area": 2.1
+    },
+    {
+      "id": "WIN-101",
+      "uniqueId": "window-101",
+      "name": "Window 1",
+      "category": "Window",
+      "type": "Fixed",
+      "level": "Floor 1",
+      "material": "Aluminum",
+      "width": 1.2,
+      "height": 1.5,
+      "mark": "WIN-101",
+      "parameters": {
+        "Mark": "WIN-101",
+        "GlazingType": "Double",
+        "Comments": "Standard window"
+      },
+      "area": 1.8
+    },
+    {
+      "id": "WIN-102",
+      "uniqueId": "window-102",
+      "name": "Window 2",
+      "category": "Window",
+      "type": "Casement",
+      "level": "Floor 2",
+      "material": "Aluminum",
+      "width": 1.2,
+      "height": 1.5,
+      "mark": "WIN-102",
+      "parameters": {
+        "Mark": "WIN-102",
+        "GlazingType": "Double",
+        "Comments": "Standard window"
+      },
+      "area": 1.8
+    },
+    {
+      "id": "WIN-103",
+      "uniqueId": "window-103",
+      "name": "Window 3",
+      "category": "Window",
+      "type": "Fixed",
+      "level": "Floor 3",
+      "material": "Aluminum",
+      "width": 1.2,
+      "height": 1.5,
+      "mark": "WIN-103",
+      "parameters": {
+        "Mark": "WIN-103",
+        "GlazingType": "Double",
+        "Comments": "Standard window"
+      },
+      "area": 1.8
+    },
+    {
+      "id": "WIN-104",
+      "uniqueId": "window-104",
+      "name": "Window 4",
+      "category": "Window",
+      "type": "Casement",
+      "level": "Floor 1",
+      "material": "Aluminum",
+      "width": 1.2,
+      "height": 1.5,
+      "mark": "WIN-104",
+      "parameters": {
+        "Mark": "WIN-104",
+        "GlazingType": "Double",
+        "Comments": "Standard window"
+      },
+      "area": 1.8
+    },
+    {
+      "id": "WIN-105",
+      "uniqueId": "window-105",
+      "name": "Window 5",
+      "category": "Window",
+      "type": "Fixed",
+      "level": "Floor 2",
+      "material": "Aluminum",
+      "width": 1.2,
+      "height": 1.5,
+      "mark": "WIN-105",
+      "parameters": {
+        "Mark": "WIN-105",
+        "GlazingType": "Double",
+        "Comments": "Standard window"
+      },
+      "area": 1.8
+    },
+    {
+      "id": "WIN-106",
+      "uniqueId": "window-106",
+      "name": "Window 6",
+      "category": "Window",
+      "type": "Casement",
+      "level": "Floor 3",
+      "material": "Aluminum",
+      "width": 1.2,
+      "height": 1.5,
+      "mark": "WIN-106",
+      "parameters": {
+        "Mark": "WIN-106",
+        "GlazingType": "Double",
+        "Comments": "Standard window"
+      },
+      "area": 1.8
+    },
+    {
+      "id": "WIN-107",
+      "uniqueId": "window-107",
+      "name": "Window 7",
+      "category": "Window",
+      "type": "Fixed",
+      "level": "Floor 1",
+      "material": "Aluminum",
+      "width": 1.2,
+      "height": 1.5,
+      "mark": "WIN-107",
+      "parameters": {
+        "Mark": "WIN-107",
+        "GlazingType": "Double",
+        "Comments": "Standard window"
+      },
+      "area": 1.8
+    },
+    {
+      "id": "WIN-108",
+      "uniqueId": "window-108",
+      "name": "Window 8",
+      "category": "Window",
+      "type": "Casement",
+      "level": "Floor 2",
+      "material": "Aluminum",
+      "width": 1.2,
+      "height": 1.5,
+      "mark": "WIN-108",
+      "parameters": {
+        "Mark": "WIN-108",
+        "GlazingType": "Double",
+        "Comments": "Standard window"
+      },
+      "area": 1.8
+    },
+    {
+      "id": "WIN-109",
+      "uniqueId": "window-109",
+      "name": "Window 9",
+      "category": "Window",
+      "type": "Fixed",
+      "level": "Floor 3",
+      "material": "Aluminum",
+      "width": 1.2,
+      "height": 1.5,
+      "mark": "WIN-109",
+      "parameters": {
+        "Mark": "WIN-109",
+        "GlazingType": "Double",
+        "Comments": "Standard window"
+      },
+      "area": 1.8
+    },
+    {
+      "id": "WIN-110",
+      "uniqueId": "window-110",
+      "name": "Window 10",
+      "category": "Window",
+      "type": "Casement",
+      "level": "Floor 1",
+      "material": "Aluminum",
+      "width": 1.2,
+      "height": 1.5,
+      "mark": "WIN-110",
+      "parameters": {
+        "Mark": "WIN-110",
+        "GlazingType": "Double",
+        "Comments": "Standard window"
+      },
+      "area": 1.8
+    },
+    {
+      "id": "R-101",
+      "uniqueId": "room-101",
+      "name": "Lobby",
+      "category": "Room",
+      "type": "Room",
+      "level": "Floor 1",
+      "length": 4,
+      "width": 5,
+      "mark": "R-101",
+      "parameters": {
+        "Mark": "R-101",
+        "Occupancy": "Business",
+        "Department": "General"
+      },
+      "area": 20
+    },
+    {
+      "id": "R-102",
+      "uniqueId": "room-102",
+      "name": "Office",
+      "category": "Room",
+      "type": "Room",
+      "level": "Floor 2",
+      "length": 5,
+      "width": 6,
+      "mark": "R-102",
+      "parameters": {
+        "Mark": "R-102",
+        "Occupancy": "Business",
+        "Department": "General"
+      },
+      "area": 30
+    },
+    {
+      "id": "R-103",
+      "uniqueId": "room-103",
+      "name": "Meeting",
+      "category": "Room",
+      "type": "Room",
+      "level": "Floor 3",
+      "length": 6,
+      "width": 7,
+      "mark": "R-103",
+      "parameters": {
+        "Mark": "R-103",
+        "Occupancy": "Business",
+        "Department": "General"
+      },
+      "area": 42
+    },
+    {
+      "id": "R-104",
+      "uniqueId": "room-104",
+      "name": "Kitchen",
+      "category": "Room",
+      "type": "Room",
+      "level": "Floor 1",
+      "length": 7,
+      "width": 4,
+      "mark": "R-104",
+      "parameters": {
+        "Mark": "R-104",
+        "Occupancy": "Business",
+        "Department": "General"
+      },
+      "area": 28
+    },
+    {
+      "id": "R-105",
+      "uniqueId": "room-105",
+      "name": "Restroom",
+      "category": "Room",
+      "type": "Room",
+      "level": "Floor 2",
+      "length": 3,
+      "width": 5,
+      "mark": "R-105",
+      "parameters": {
+        "Mark": "R-105",
+        "Occupancy": "Business",
+        "Department": "General"
+      },
+      "area": 15
+    },
+    {
+      "id": "R-106",
+      "uniqueId": "room-106",
+      "name": "Storage",
+      "category": "Room",
+      "type": "Room",
+      "level": "Floor 3",
+      "length": 4,
+      "width": 6,
+      "mark": "R-106",
+      "parameters": {
+        "Mark": "R-106",
+        "Occupancy": "Business",
+        "Department": "General"
+      },
+      "area": 24
+    },
+    {
+      "id": "R-107",
+      "uniqueId": "room-107",
+      "name": "Server Room",
+      "category": "Room",
+      "type": "Room",
+      "level": "Floor 1",
+      "length": 5,
+      "width": 7,
+      "mark": "R-107",
+      "parameters": {
+        "Mark": "R-107",
+        "Occupancy": "Business",
+        "Department": "General"
+      },
+      "area": 35
+    },
+    {
+      "id": "R-108",
+      "uniqueId": "room-108",
+      "name": "Corridor",
+      "category": "Room",
+      "type": "Room",
+      "level": "Floor 2",
+      "length": 6,
+      "width": 4,
+      "mark": "R-108",
+      "parameters": {
+        "Mark": "R-108",
+        "Occupancy": "Business",
+        "Department": "General"
+      },
+      "area": 24
+    },
+    {
+      "id": "R-109",
+      "uniqueId": "room-109",
+      "name": "Reception",
+      "category": "Room",
+      "type": "Room",
+      "level": "Floor 3",
+      "length": 7,
+      "width": 5,
+      "mark": "R-109",
+      "parameters": {
+        "Mark": "R-109",
+        "Occupancy": "Business",
+        "Department": "General"
+      },
+      "area": 35
+    },
+    {
+      "id": "R-110",
+      "uniqueId": "room-110",
+      "name": "Break Room",
+      "category": "Room",
+      "type": "Room",
+      "level": "Floor 1",
+      "length": 3,
+      "width": 6,
+      "mark": "R-110",
+      "parameters": {
+        "Mark": "R-110",
+        "Occupancy": "Business",
+        "Department": "General"
+      },
+      "area": 18
+    },
+    {
+      "id": "R-111",
+      "uniqueId": "room-111",
+      "name": "Archive",
+      "category": "Room",
+      "type": "Room",
+      "level": "Floor 2",
+      "length": 4,
+      "width": 7,
+      "mark": "R-111",
+      "parameters": {
+        "Mark": "R-111",
+        "Occupancy": "Business",
+        "Department": "General"
+      },
+      "area": 28
+    },
+    {
+      "id": "R-112",
+      "uniqueId": "room-112",
+      "name": "Lab",
+      "category": "Room",
+      "type": "Room",
+      "level": "Floor 3",
+      "length": 5,
+      "width": 4,
+      "mark": "R-112",
+      "parameters": {
+        "Mark": "R-112",
+        "Occupancy": "Business",
+        "Department": "General"
+      },
+      "area": 20
+    },
+    {
+      "id": "F-101",
+      "uniqueId": "floor-101",
+      "name": "Floor Slab 1",
+      "category": "Floor",
+      "type": "Concrete Slab 20cm",
+      "level": "Floor 1",
+      "material": "Concrete",
+      "length": 12.0,
+      "width": 10.0,
+      "height": 0.2,
+      "mark": "F-101",
+      "parameters": {
+        "Mark": "F-101",
+        "StructuralUsage": "Slab",
+        "LoadBearing": "true"
+      },
+      "area": 120.0,
+      "volume": 24.0
+    },
+    {
+      "id": "F-102",
+      "uniqueId": "floor-102",
+      "name": "Floor Slab 2",
+      "category": "Floor",
+      "type": "Concrete Slab 20cm",
+      "level": "Floor 2",
+      "material": "Concrete",
+      "length": 12.0,
+      "width": 10.0,
+      "height": 0.2,
+      "mark": "F-102",
+      "parameters": {
+        "Mark": "F-102",
+        "StructuralUsage": "Slab",
+        "LoadBearing": "true"
+      },
+      "area": 120.0,
+      "volume": 24.0
+    },
+    {
+      "id": "F-103",
+      "uniqueId": "floor-103",
+      "name": "Floor Slab 3",
+      "category": "Floor",
+      "type": "Concrete Slab 20cm",
+      "level": "Floor 3",
+      "material": "Concrete",
+      "length": 12.0,
+      "width": 10.0,
+      "height": 0.2,
+      "mark": "F-103",
+      "parameters": {
+        "Mark": "F-103",
+        "StructuralUsage": "Slab",
+        "LoadBearing": "true"
+      },
+      "area": 120.0,
+      "volume": 24.0
+    },
+    {
+      "id": "F-104",
+      "uniqueId": "floor-104",
+      "name": "Floor Slab 4",
+      "category": "Floor",
+      "type": "Concrete Slab 20cm",
+      "level": "Floor 1",
+      "material": "Concrete",
+      "length": 12.0,
+      "width": 10.0,
+      "height": 0.2,
+      "mark": "F-104",
+      "parameters": {
+        "Mark": "F-104",
+        "StructuralUsage": "Slab",
+        "LoadBearing": "true"
+      },
+      "area": 120.0,
+      "volume": 24.0
+    },
+    {
+      "id": "C-101",
+      "uniqueId": "column-101",
+      "name": "Column 1",
+      "category": "Column",
+      "type": "Rectangular 40x40",
+      "level": "Floor 1",
+      "material": "Concrete",
+      "width": 0.4,
+      "height": 3.0,
+      "length": 0.4,
+      "mark": "C-101",
+      "parameters": {
+        "Mark": "C-101",
+        "StructuralUsage": "Column",
+        "LoadBearing": "true"
+      },
+      "volume": 0.48
+    },
+    {
+      "id": "C-102",
+      "uniqueId": "column-102",
+      "name": "Column 2",
+      "category": "Column",
+      "type": "Rectangular 40x40",
+      "level": "Floor 2",
+      "material": "Concrete",
+      "width": 0.4,
+      "height": 3.0,
+      "length": 0.4,
+      "mark": "C-102",
+      "parameters": {
+        "Mark": "C-102",
+        "StructuralUsage": "Column",
+        "LoadBearing": "true"
+      },
+      "volume": 0.48
+    },
+    {
+      "id": "C-103",
+      "uniqueId": "column-103",
+      "name": "Column 3",
+      "category": "Column",
+      "type": "Rectangular 40x40",
+      "level": "Floor 3",
+      "material": "Concrete",
+      "width": 0.4,
+      "height": 3.0,
+      "length": 0.4,
+      "mark": "C-103",
+      "parameters": {
+        "Mark": "C-103",
+        "StructuralUsage": "Column",
+        "LoadBearing": "true"
+      },
+      "volume": 0.48
+    },
+    {
+      "id": "C-104",
+      "uniqueId": "column-104",
+      "name": "Column 4",
+      "category": "Column",
+      "type": "Rectangular 40x40",
+      "level": "Floor 1",
+      "material": "Concrete",
+      "width": 0.4,
+      "height": 3.0,
+      "length": 0.4,
+      "mark": "C-104",
+      "parameters": {
+        "Mark": "C-104",
+        "StructuralUsage": "Column",
+        "LoadBearing": "true"
+      },
+      "volume": 0.48
+    },
+    {
+      "id": "C-105",
+      "uniqueId": "column-105",
+      "name": "Column 5",
+      "category": "Column",
+      "type": "Rectangular 40x40",
+      "level": "Floor 2",
+      "material": "Concrete",
+      "width": 0.4,
+      "height": 3.0,
+      "length": 0.4,
+      "mark": "C-105",
+      "parameters": {
+        "Mark": "C-105",
+        "StructuralUsage": "Column",
+        "LoadBearing": "true"
+      },
+      "volume": 0.48
+    },
+    {
+      "id": "C-106",
+      "uniqueId": "column-106",
+      "name": "Column 6",
+      "category": "Column",
+      "type": "Rectangular 40x40",
+      "level": "Floor 3",
+      "material": "Concrete",
+      "width": 0.4,
+      "height": 3.0,
+      "length": 0.4,
+      "mark": "C-106",
+      "parameters": {
+        "Mark": "C-106",
+        "StructuralUsage": "Column",
+        "LoadBearing": "true"
+      },
+      "volume": 0.48
+    },
+    {
+      "id": "C-107",
+      "uniqueId": "column-107",
+      "name": "Column 7",
+      "category": "Column",
+      "type": "Rectangular 40x40",
+      "level": "Floor 1",
+      "material": "Concrete",
+      "width": 0.4,
+      "height": 3.0,
+      "length": 0.4,
+      "mark": "C-107",
+      "parameters": {
+        "Mark": "C-107",
+        "StructuralUsage": "Column",
+        "LoadBearing": "true"
+      },
+      "volume": 0.48
+    },
+    {
+      "id": "C-108",
+      "uniqueId": "column-108",
+      "name": "Column 8",
+      "category": "Column",
+      "type": "Rectangular 40x40",
+      "level": "Floor 2",
+      "material": "Concrete",
+      "width": 0.4,
+      "height": 3.0,
+      "length": 0.4,
+      "mark": "C-108",
+      "parameters": {
+        "Mark": "C-108",
+        "StructuralUsage": "Column",
+        "LoadBearing": "true"
+      },
+      "volume": 0.48
+    },
+    {
+      "id": "C-109",
+      "uniqueId": "column-109",
+      "name": "Column 9",
+      "category": "Column",
+      "type": "Rectangular 40x40",
+      "level": "Floor 3",
+      "material": "Concrete",
+      "width": 0.4,
+      "height": 3.0,
+      "length": 0.4,
+      "mark": "C-109",
+      "parameters": {
+        "Mark": "C-109",
+        "StructuralUsage": "Column",
+        "LoadBearing": "true"
+      },
+      "volume": 0.48
+    },
+    {
+      "id": "C-110",
+      "uniqueId": "column-110",
+      "name": "Column 10",
+      "category": "Column",
+      "type": "Rectangular 40x40",
+      "level": "Floor 1",
+      "material": "Concrete",
+      "width": 0.4,
+      "height": 3.0,
+      "length": 0.4,
+      "mark": "C-110",
+      "parameters": {
+        "Mark": "C-110",
+        "StructuralUsage": "Column",
+        "LoadBearing": "true"
+      },
+      "volume": 0.48
+    },
+    {
+      "id": "C-111",
+      "uniqueId": "column-111",
+      "name": "Column 11",
+      "category": "Column",
+      "type": "Rectangular 40x40",
+      "level": "Floor 2",
+      "material": "Concrete",
+      "width": 0.4,
+      "height": 3.0,
+      "length": 0.4,
+      "mark": "C-111",
+      "parameters": {
+        "Mark": "C-111",
+        "StructuralUsage": "Column",
+        "LoadBearing": "true"
+      },
+      "volume": 0.48
+    },
+    {
+      "id": "C-112",
+      "uniqueId": "column-112",
+      "name": "Column 12",
+      "category": "Column",
+      "type": "Rectangular 40x40",
+      "level": "Floor 3",
+      "material": "Concrete",
+      "width": 0.4,
+      "height": 3.0,
+      "length": 0.4,
+      "mark": "C-112",
+      "parameters": {
+        "Mark": "C-112",
+        "StructuralUsage": "Column",
+        "LoadBearing": "true"
+      },
+      "volume": 0.48
+    },
+    {
+      "id": "B-101",
+      "uniqueId": "beam-101",
+      "name": "Beam 1",
+      "category": "Beam",
+      "type": "Rectangular 25x50",
+      "level": "Floor 1",
+      "material": "Steel",
+      "width": 0.25,
+      "height": 0.5,
+      "length": 4.5,
+      "mark": "B-101",
+      "parameters": {
+        "Mark": "B-101",
+        "StructuralUsage": "Girder",
+        "LoadBearing": "true"
+      },
+      "volume": 0.56
+    },
+    {
+      "id": "B-102",
+      "uniqueId": "beam-102",
+      "name": "Beam 2",
+      "category": "Beam",
+      "type": "Rectangular 25x50",
+      "level": "Floor 2",
+      "material": "Concrete",
+      "width": 0.25,
+      "height": 0.5,
+      "length": 5.0,
+      "mark": "B-102",
+      "parameters": {
+        "Mark": "B-102",
+        "StructuralUsage": "Girder",
+        "LoadBearing": "true"
+      },
+      "volume": 0.62
+    },
+    {
+      "id": "B-103",
+      "uniqueId": "beam-103",
+      "name": "Beam 3",
+      "category": "Beam",
+      "type": "Rectangular 25x50",
+      "level": "Floor 3",
+      "material": "Steel",
+      "width": 0.25,
+      "height": 0.5,
+      "length": 5.5,
+      "mark": "B-103",
+      "parameters": {
+        "Mark": "B-103",
+        "StructuralUsage": "Girder",
+        "LoadBearing": "true"
+      },
+      "volume": 0.69
+    },
+    {
+      "id": "B-104",
+      "uniqueId": "beam-104",
+      "name": "Beam 4",
+      "category": "Beam",
+      "type": "Rectangular 25x50",
+      "level": "Floor 1",
+      "material": "Concrete",
+      "width": 0.25,
+      "height": 0.5,
+      "length": 4.0,
+      "mark": "B-104",
+      "parameters": {
+        "Mark": "B-104",
+        "StructuralUsage": "Girder",
+        "LoadBearing": "true"
+      },
+      "volume": 0.5
+    },
+    {
+      "id": "B-105",
+      "uniqueId": "beam-105",
+      "name": "Beam 5",
+      "category": "Beam",
+      "type": "Rectangular 25x50",
+      "level": "Floor 2",
+      "material": "Steel",
+      "width": 0.25,
+      "height": 0.5,
+      "length": 4.5,
+      "mark": "B-105",
+      "parameters": {
+        "Mark": "B-105",
+        "StructuralUsage": "Girder",
+        "LoadBearing": "true"
+      },
+      "volume": 0.56
+    },
+    {
+      "id": "B-106",
+      "uniqueId": "beam-106",
+      "name": "Beam 6",
+      "category": "Beam",
+      "type": "Rectangular 25x50",
+      "level": "Floor 3",
+      "material": "Concrete",
+      "width": 0.25,
+      "height": 0.5,
+      "length": 5.0,
+      "mark": "B-106",
+      "parameters": {
+        "Mark": "B-106",
+        "StructuralUsage": "Girder",
+        "LoadBearing": "true"
+      },
+      "volume": 0.62
+    },
+    {
+      "id": "B-107",
+      "uniqueId": "beam-107",
+      "name": "Beam 7",
+      "category": "Beam",
+      "type": "Rectangular 25x50",
+      "level": "Floor 1",
+      "material": "Steel",
+      "width": 0.25,
+      "height": 0.5,
+      "length": 5.5,
+      "mark": "B-107",
+      "parameters": {
+        "Mark": "B-107",
+        "StructuralUsage": "Girder",
+        "LoadBearing": "true"
+      },
+      "volume": 0.69
+    },
+    {
+      "id": "B-108",
+      "uniqueId": "beam-108",
+      "name": "Beam 8",
+      "category": "Beam",
+      "type": "Rectangular 25x50",
+      "level": "Floor 2",
+      "material": "Concrete",
+      "width": 0.25,
+      "height": 0.5,
+      "length": 4.0,
+      "mark": "B-108",
+      "parameters": {
+        "Mark": "B-108",
+        "StructuralUsage": "Girder",
+        "LoadBearing": "true"
+      },
+      "volume": 0.5
+    },
+    {
+      "id": "B-109",
+      "uniqueId": "beam-109",
+      "name": "Beam 9",
+      "category": "Beam",
+      "type": "Rectangular 25x50",
+      "level": "Floor 3",
+      "material": "Steel",
+      "width": 0.25,
+      "height": 0.5,
+      "length": 4.5,
+      "mark": "B-109",
+      "parameters": {
+        "Mark": "B-109",
+        "StructuralUsage": "Girder",
+        "LoadBearing": "true"
+      },
+      "volume": 0.56
+    },
+    {
+      "id": "B-110",
+      "uniqueId": "beam-110",
+      "name": "Beam 10",
+      "category": "Beam",
+      "type": "Rectangular 25x50",
+      "level": "Floor 1",
+      "material": "Concrete",
+      "width": 0.25,
+      "height": 0.5,
+      "length": 5.0,
+      "mark": "B-110",
+      "parameters": {
+        "Mark": "B-110",
+        "StructuralUsage": "Girder",
+        "LoadBearing": "true"
+      },
+      "volume": 0.62
+    },
+    {
+      "id": "P-101",
+      "uniqueId": "pipe-101",
+      "name": "Pipe 1",
+      "category": "Pipe",
+      "type": "PVC 100mm",
+      "level": "Floor 1",
+      "material": "PVC",
+      "width": 0.1,
+      "length": 4,
+      "mark": "P-101",
+      "parameters": {
+        "Mark": "P-101",
+        "System": "Sanitary",
+        "FlowRate": "2.5 L/s"
+      },
+      "volume": 0.03
+    },
+    {
+      "id": "P-102",
+      "uniqueId": "pipe-102",
+      "name": "Pipe 2",
+      "category": "Pipe",
+      "type": "Copper 50mm",
+      "level": "Floor 2",
+      "material": "Copper",
+      "width": 0.05,
+      "length": 5,
+      "mark": "P-102",
+      "parameters": {
+        "Mark": "P-102",
+        "System": "Domestic Water",
+        "FlowRate": "2.5 L/s"
+      },
+      "volume": 0.01
+    },
+    {
+      "id": "P-103",
+      "uniqueId": "pipe-103",
+      "name": "Pipe 3",
+      "category": "Pipe",
+      "type": "PVC 100mm",
+      "level": "Floor 3",
+      "material": "PVC",
+      "width": 0.1,
+      "length": 6,
+      "mark": "P-103",
+      "parameters": {
+        "Mark": "P-103",
+        "System": "Sanitary",
+        "FlowRate": "2.5 L/s"
+      },
+      "volume": 0.05
+    },
+    {
+      "id": "P-104",
+      "uniqueId": "pipe-104",
+      "name": "Pipe 4",
+      "category": "Pipe",
+      "type": "Copper 50mm",
+      "level": "Floor 1",
+      "material": "Copper",
+      "width": 0.05,
+      "length": 7,
+      "mark": "P-104",
+      "parameters": {
+        "Mark": "P-104",
+        "System": "Domestic Water",
+        "FlowRate": "2.5 L/s"
+      },
+      "volume": 0.01
+    },
+    {
+      "id": "P-105",
+      "uniqueId": "pipe-105",
+      "name": "Pipe 5",
+      "category": "Pipe",
+      "type": "PVC 100mm",
+      "level": "Floor 2",
+      "material": "PVC",
+      "width": 0.1,
+      "length": 3,
+      "mark": "P-105",
+      "parameters": {
+        "Mark": "P-105",
+        "System": "Sanitary",
+        "FlowRate": "2.5 L/s"
+      },
+      "volume": 0.02
+    },
+    {
+      "id": "P-106",
+      "uniqueId": "pipe-106",
+      "name": "Pipe 6",
+      "category": "Pipe",
+      "type": "Copper 50mm",
+      "level": "Floor 3",
+      "material": "Copper",
+      "width": 0.05,
+      "length": 4,
+      "mark": "P-106",
+      "parameters": {
+        "Mark": "P-106",
+        "System": "Domestic Water",
+        "FlowRate": "2.5 L/s"
+      },
+      "volume": 0.01
+    },
+    {
+      "id": "P-107",
+      "uniqueId": "pipe-107",
+      "name": "Pipe 7",
+      "category": "Pipe",
+      "type": "PVC 100mm",
+      "level": "Floor 1",
+      "material": "PVC",
+      "width": 0.1,
+      "length": 5,
+      "mark": "P-107",
+      "parameters": {
+        "Mark": "P-107",
+        "System": "Sanitary",
+        "FlowRate": "2.5 L/s"
+      },
+      "volume": 0.04
+    },
+    {
+      "id": "P-108",
+      "uniqueId": "pipe-108",
+      "name": "Pipe 8",
+      "category": "Pipe",
+      "type": "Copper 50mm",
+      "level": "Floor 2",
+      "material": "Copper",
+      "width": 0.05,
+      "length": 6,
+      "mark": "P-108",
+      "parameters": {
+        "Mark": "P-108",
+        "System": "Domestic Water",
+        "FlowRate": "2.5 L/s"
+      },
+      "volume": 0.01
+    },
+    {
+      "id": "P-109",
+      "uniqueId": "pipe-109",
+      "name": "Pipe 9",
+      "category": "Pipe",
+      "type": "PVC 100mm",
+      "level": "Floor 3",
+      "material": "PVC",
+      "width": 0.1,
+      "length": 7,
+      "mark": "P-109",
+      "parameters": {
+        "Mark": "P-109",
+        "System": "Sanitary",
+        "FlowRate": "2.5 L/s"
+      },
+      "volume": 0.05
+    },
+    {
+      "id": "P-110",
+      "uniqueId": "pipe-110",
+      "name": "Pipe 10",
+      "category": "Pipe",
+      "type": "Copper 50mm",
+      "level": "Floor 1",
+      "material": "Copper",
+      "width": 0.05,
+      "length": 3,
+      "mark": "P-110",
+      "parameters": {
+        "Mark": "P-110",
+        "System": "Domestic Water",
+        "FlowRate": "2.5 L/s"
+      },
+      "volume": 0.01
+    },
+    {
+      "id": "P-111",
+      "uniqueId": "pipe-111",
+      "name": "Pipe 11",
+      "category": "Pipe",
+      "type": "PVC 100mm",
+      "level": "Floor 2",
+      "material": "PVC",
+      "width": 0.1,
+      "length": 4,
+      "mark": "P-111",
+      "parameters": {
+        "Mark": "P-111",
+        "System": "Sanitary",
+        "FlowRate": "2.5 L/s"
+      },
+      "volume": 0.03
+    },
+    {
+      "id": "P-112",
+      "uniqueId": "pipe-112",
+      "name": "Pipe 12",
+      "category": "Pipe",
+      "type": "Copper 50mm",
+      "level": "Floor 3",
+      "material": "Copper",
+      "width": 0.05,
+      "length": 5,
+      "mark": "P-112",
+      "parameters": {
+        "Mark": "P-112",
+        "System": "Domestic Water",
+        "FlowRate": "2.5 L/s"
+      },
+      "volume": 0.01
+    },
+    {
+      "id": "FUR-101",
+      "uniqueId": "furniture-101",
+      "name": "Chair 1",
+      "category": "Furniture",
+      "type": "Chair",
+      "level": "Floor 1",
+      "material": "Wood",
+      "width": 0.9,
+      "length": 1.3,
+      "height": 0.75,
+      "mark": "FUR-101",
+      "parameters": {
+        "Mark": "FUR-101",
+        "Comments": "Movable"
+      }
+    },
+    {
+      "id": "FUR-102",
+      "uniqueId": "furniture-102",
+      "name": "Cabinet 2",
+      "category": "Furniture",
+      "type": "Cabinet",
+      "level": "Floor 2",
+      "material": "Wood",
+      "width": 1.2,
+      "length": 1.6,
+      "height": 0.75,
+      "mark": "FUR-102",
+      "parameters": {
+        "Mark": "FUR-102",
+        "Comments": "Movable"
+      }
+    },
+    {
+      "id": "FUR-103",
+      "uniqueId": "furniture-103",
+      "name": "Sofa 3",
+      "category": "Furniture",
+      "type": "Sofa",
+      "level": "Floor 3",
+      "material": "Wood",
+      "width": 0.6,
+      "length": 1.9,
+      "height": 0.75,
+      "mark": "FUR-103",
+      "parameters": {
+        "Mark": "FUR-103",
+        "Comments": "Movable"
+      }
+    },
+    {
+      "id": "FUR-104",
+      "uniqueId": "furniture-104",
+      "name": "Table 4",
+      "category": "Furniture",
+      "type": "Table",
+      "level": "Floor 1",
+      "material": "Wood",
+      "width": 0.9,
+      "length": 1.0,
+      "height": 0.75,
+      "mark": "FUR-104",
+      "parameters": {
+        "Mark": "FUR-104",
+        "Comments": "Movable"
+      }
+    },
+    {
+      "id": "FUR-105",
+      "uniqueId": "furniture-105",
+      "name": "Shelf 5",
+      "category": "Furniture",
+      "type": "Shelf",
+      "level": "Floor 2",
+      "material": "Wood",
+      "width": 1.2,
+      "length": 1.3,
+      "height": 0.75,
+      "mark": "FUR-105",
+      "parameters": {
+        "Mark": "FUR-105",
+        "Comments": "Movable"
+      }
+    },
+    {
+      "id": "FUR-106",
+      "uniqueId": "furniture-106",
+      "name": "Locker 6",
+      "category": "Furniture",
+      "type": "Locker",
+      "level": "Floor 3",
+      "material": "Wood",
+      "width": 0.6,
+      "length": 1.6,
+      "height": 0.75,
+      "mark": "FUR-106",
+      "parameters": {
+        "Mark": "FUR-106",
+        "Comments": "Movable"
+      }
+    },
+    {
+      "id": "FUR-107",
+      "uniqueId": "furniture-107",
+      "name": "Desk 7",
+      "category": "Furniture",
+      "type": "Desk",
+      "level": "Floor 1",
+      "material": "Wood",
+      "width": 0.9,
+      "length": 1.9,
+      "height": 0.75,
+      "mark": "FUR-107",
+      "parameters": {
+        "Mark": "FUR-107",
+        "Comments": "Movable"
+      }
+    },
+    {
+      "id": "FUR-108",
+      "uniqueId": "furniture-108",
+      "name": "Chair 8",
+      "category": "Furniture",
+      "type": "Chair",
+      "level": "Floor 2",
+      "material": "Wood",
+      "width": 1.2,
+      "length": 1.0,
+      "height": 0.75,
+      "mark": "FUR-108",
+      "parameters": {
+        "Mark": "FUR-108",
+        "Comments": "Movable"
+      }
+    },
+    {
+      "id": "FUR-109",
+      "uniqueId": "furniture-109",
+      "name": "Cabinet 9",
+      "category": "Furniture",
+      "type": "Cabinet",
+      "level": "Floor 3",
+      "material": "Wood",
+      "width": 0.6,
+      "length": 1.3,
+      "height": 0.75,
+      "mark": "FUR-109",
+      "parameters": {
+        "Mark": "FUR-109",
+        "Comments": "Movable"
+      }
+    },
+    {
+      "id": "FUR-110",
+      "uniqueId": "furniture-110",
+      "name": "Sofa 10",
+      "category": "Furniture",
+      "type": "Sofa",
+      "level": "Floor 1",
+      "material": "Wood",
+      "width": 0.9,
+      "length": 1.6,
+      "height": 0.75,
+      "mark": "FUR-110",
+      "parameters": {
+        "Mark": "FUR-110",
+        "Comments": "Movable"
+      }
+    },
+    {
+      "id": "FUR-111",
+      "uniqueId": "furniture-111",
+      "name": "Table 11",
+      "category": "Furniture",
+      "type": "Table",
+      "level": "Floor 2",
+      "material": "Wood",
+      "width": 1.2,
+      "length": 1.9,
+      "height": 0.75,
+      "mark": "FUR-111",
+      "parameters": {
+        "Mark": "FUR-111",
+        "Comments": "Movable"
+      }
+    },
+    {
+      "id": "FUR-112",
+      "uniqueId": "furniture-112",
+      "name": "Shelf 12",
+      "category": "Furniture",
+      "type": "Shelf",
+      "level": "Floor 3",
+      "material": "Wood",
+      "width": 0.6,
+      "length": 1.0,
+      "height": 0.75,
+      "mark": "FUR-112",
+      "parameters": {
+        "Mark": "FUR-112",
+        "Comments": "Movable"
+      }
+    },
+    {
+      "id": "FUR-113",
+      "uniqueId": "furniture-113",
+      "name": "Locker 13",
+      "category": "Furniture",
+      "type": "Locker",
+      "level": "Floor 1",
+      "material": "Wood",
+      "width": 0.9,
+      "length": 1.3,
+      "height": 0.75,
+      "mark": "FUR-113",
+      "parameters": {
+        "Mark": "FUR-113",
+        "Comments": "Movable"
+      }
+    },
+    {
+      "id": "FUR-114",
+      "uniqueId": "furniture-114",
+      "name": "Desk 14",
+      "category": "Furniture",
+      "type": "Desk",
+      "level": "Floor 2",
+      "material": "Wood",
+      "width": 1.2,
+      "length": 1.6,
+      "height": 0.75,
+      "mark": "FUR-114",
+      "parameters": {
+        "Mark": "FUR-114",
+        "Comments": "Movable"
+      }
+    }
+  ]
+}
