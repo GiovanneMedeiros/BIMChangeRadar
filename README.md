@@ -99,7 +99,7 @@ Dependências: `App → Infrastructure → Core`. Para integrar o Revit no futur
 ## 🚀 Como executar
 Requisitos: [.NET 8 SDK](https://dotnet.microsoft.com/download) (Windows, macOS ou Linux).
 ```bash
-git clone https://github.com/GITHUB_USER/BIMChangeRadar.git
+git clone https://github.com/GiovanneMedeiros/BIMChangeRadar.git
 cd BIMChangeRadar
 dotnet run --project BIMChangeRadar.App      # abrir o app
 dotnet test                                   # rodar os testes

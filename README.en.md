@@ -80,7 +80,7 @@ Dependencies: `App → Infrastructure → Core`. A future Revit integration only
 ## 🚀 Run
 Requires the [.NET 8 SDK](https://dotnet.microsoft.com/download).
 ```bash
-git clone https://github.com/GITHUB_USER/BIMChangeRadar.git
+git clone https://github.com/GiovanneMedeiros/BIMChangeRadar.git
 cd BIMChangeRadar
 dotnet run --project BIMChangeRadar.App      # launch the app
 dotnet test                                   # run the tests
