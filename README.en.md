@@ -127,3 +127,5 @@ Revit API integration · IFC support · Visual model comparison · AI-powered ch
 
 ## Author
 Built by **Giovanne** as a portfolio project at the intersection of software engineering and BIM.
+
+Released under the [MIT License](LICENSE).
